@@ -49,25 +49,28 @@ nav{display:flex;align-items:center;gap:8px;}
 .nav-link{color:var(--texto-suave);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all .25s;}
 .nav-link:hover{color:#fff;background:var(--borde);}
 
-/* Botón login solo icono */
 .btn-login{background:transparent;color:var(--texto-suave);border:1px solid var(--borde);padding:8px 10px;border-radius:8px;font-size:18px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .25s;display:flex;align-items:center;justify-content:center;width:40px;height:40px;}
 .btn-login:hover{color:#fff;background:var(--borde);}
 
 /* ─── HERO ─── */
 .hero{margin-top:68px;min-height:88vh;position:relative;display:flex;align-items:center;padding:60px 8%;overflow:hidden;}
 
-/* Imagen de fondo con zoom animado */
+/* ── Imagen de fondo con pan cinematográfico ── */
 .hero-bg{position:absolute;inset:0;z-index:0;}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center top;animation:heroZoom 18s ease-in-out infinite alternate;transform-origin:center center;}
-@keyframes heroZoom{
-  0%  {transform:scale(1)    translateX(0);}
-  30% {transform:scale(1.08) translateX(-3%);}
-  60% {transform:scale(1.12) translateX(3%);}
-  100%{transform:scale(1.06) translateX(-1%);}
+.hero-bg img{
+  width:100%;height:100%;object-fit:cover;
+  object-position:right center;
+  animation:heroPan 20s ease-in-out infinite alternate;
+  transform-origin:center center;
 }
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(7,16,29,.92) 0%,rgba(11,22,40,.78) 55%,rgba(232,0,28,.06) 100%);}
+/* Pan de derecha a izquierda, siempre mostrando a la persona (derecha) al inicio */
+@keyframes heroPan{
+  0%  {transform:scale(1.08) translateX(0%);}
+  50% {transform:scale(1.12) translateX(-4%);}
+  100%{transform:scale(1.06) translateX(-2%);}
+}
 
-/* Gradiente inferior para fundir con el fondo */
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(7,16,29,.92) 0%,rgba(11,22,40,.78) 55%,rgba(232,0,28,.06) 100%);}
 .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(transparent,var(--negro));pointer-events:none;z-index:2;}
 
 .hero-inner{max-width:700px;position:relative;z-index:3;}
@@ -104,11 +107,7 @@ nav{display:flex;align-items:center;gap:8px;}
 .share-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
 .share-btn{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;border:none;text-decoration:none;color:#fff;transition:all .2s;flex-shrink:0;}
 .share-btn:hover{transform:translateY(-2px);opacity:.85;}
-.share-fb{background:#1877f2;}
-.share-wa{background:#25d366;}
-.share-tw{background:#1da1f2;}
-.share-tg{background:#229ed9;}
-.share-cp{background:var(--borde);color:var(--texto);}
+.share-fb{background:#1877f2;}.share-wa{background:#25d366;}.share-tw{background:#1da1f2;}.share-tg{background:#229ed9;}.share-cp{background:var(--borde);color:var(--texto);}
 .share-cp:hover{background:var(--rojo);color:#fff;}
 
 /* ─── NEWS GRID ─── */
@@ -128,11 +127,7 @@ nav{display:flex;align-items:center;gap:8px;}
 /* ─── SKELETON ─── */
 .skeleton-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
 .skeleton-card{background:var(--azul-card);border:1px solid var(--borde);border-radius:16px;overflow:hidden;}
-.sk{border-radius:6px;}
-.sk-img{height:200px;width:100%;border-radius:0;}
-.sk-title{height:18px;width:85%;margin:20px 22px 10px;}
-.sk-line{height:12px;width:95%;margin:0 22px 8px;}
-.sk-line.short{width:65%;}
+.sk{border-radius:6px;}.sk-img{height:200px;width:100%;border-radius:0;}.sk-title{height:18px;width:85%;margin:20px 22px 10px;}.sk-line{height:12px;width:95%;margin:0 22px 8px;}.sk-line.short{width:65%;}
 .sk{background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.1) 50%,rgba(255,255,255,.04) 75%);background-size:800px 100%;animation:shimmer 1.5s infinite;}
 @keyframes shimmer{0%{background-position:-400px 0;}100%{background-position:400px 0;}}
 
@@ -158,8 +153,7 @@ nav{display:flex;align-items:center;gap:8px;}
 .modal-content{color:var(--texto);font-size:16px;line-height:1.85;}
 .modal-content p{margin-bottom:18px;}
 .modal-content h1,.modal-content h2{font-family:'Playfair Display',serif;color:#fff;margin:28px 0 12px;}
-.modal-content h1{font-size:26px;}
-.modal-content h2{font-size:22px;}
+.modal-content h1{font-size:26px;}.modal-content h2{font-size:22px;}
 .modal-content h3{font-size:18px;color:#fff;margin:22px 0 10px;font-weight:700;}
 .modal-content strong{color:#fff;font-weight:700;}
 .modal-content em{color:var(--rojo);font-style:italic;}
@@ -167,7 +161,6 @@ nav{display:flex;align-items:center;gap:8px;}
 .modal-content li{margin-bottom:8px;}
 .modal-content img{width:100%;border-radius:12px;margin:20px 0;}
 .modal-content blockquote{border-left:3px solid var(--rojo);padding:12px 20px;background:rgba(232,0,28,.06);border-radius:0 8px 8px 0;margin:20px 0;font-style:italic;color:var(--texto-suave);}
-/* Videos embed responsive */
 .modal-content .embed-wrap{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin:20px 0;}
 .modal-content .embed-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
 .modal-share{margin-top:32px;padding-top:24px;border-top:1px solid var(--borde);}
@@ -190,19 +183,12 @@ footer{padding:40px 8% 100px;border-top:1px solid var(--borde);display:flex;just
 .player{position:fixed;bottom:0;left:0;width:100%;background:rgba(7,16,29,.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--borde);padding:0 16px;height:62px;display:flex;align-items:center;justify-content:space-between;z-index:1000;gap:10px;}
 .player-brand{display:flex;align-items:center;gap:8px;flex-shrink:0;min-width:0;}
 .player-icon{width:34px;height:34px;background:var(--rojo);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;flex-shrink:0;}
-
-/* Texto scroll de la emisora */
 .player-scroll-wrap{overflow:hidden;width:110px;flex-shrink:0;}
 .player-scroll-text{display:inline-block;white-space:nowrap;animation:scrollText 14s linear infinite;font-size:11px;color:var(--rojo);font-weight:700;letter-spacing:.5px;}
-@keyframes scrollText{
-  0%  {transform:translateX(110px);}
-  100%{transform:translateX(-100%);}
-}
+@keyframes scrollText{0%{transform:translateX(110px);}100%{transform:translateX(-100%);}}
 .player-scroll-text:hover{animation-play-state:paused;}
-
 .player-info{display:flex;flex-direction:column;line-height:1.2;min-width:0;}
 .player-info strong{font-size:12px;font-weight:600;color:#fff;white-space:nowrap;}
-
 .player-controls{display:flex;align-items:center;gap:8px;flex-shrink:0;}
 .play-btn{width:40px;height:40px;border-radius:50%;background:var(--rojo);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;color:#fff;font-size:14px;transition:all .25s;flex-shrink:0;}
 .play-btn:hover{background:var(--rojo-dark);transform:scale(1.08);}
@@ -286,6 +272,31 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
 .img-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
 .img-upload-area i{font-size:22px;margin-bottom:6px;display:block;}
 
+/* ─── BUSCADOR UNSPLASH ─── */
+.unsplash-panel{background:rgba(255,255,255,.04);border:1px solid var(--borde);border-radius:10px;padding:12px;margin-top:8px;display:none;}
+.unsplash-panel.show{display:block;}
+.unsplash-search{display:flex;gap:8px;margin-bottom:10px;}
+.unsplash-search input{flex:1;padding:8px 12px;background:rgba(255,255,255,.07);border:1px solid var(--borde);color:#fff;border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;}
+.unsplash-search input:focus{border-color:var(--rojo);}
+.unsplash-search button{padding:8px 14px;background:var(--rojo);color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;}
+.unsplash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-height:220px;overflow-y:auto;}
+.unsplash-grid img{width:100%;height:70px;object-fit:cover;border-radius:6px;cursor:pointer;border:2px solid transparent;transition:.2s;}
+.unsplash-grid img:hover{border-color:var(--rojo);transform:scale(1.03);}
+.unsplash-loading{text-align:center;padding:20px;color:var(--texto-suave);font-size:13px;}
+.btn-unsplash-toggle{width:100%;padding:8px;background:rgba(255,255,255,.05);border:1px solid var(--borde);color:var(--texto-suave);border-radius:8px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:6px;}
+.btn-unsplash-toggle:hover{border-color:var(--rojo);color:#fff;}
+
+/* ─── INLINE IMG SEARCH (en editor de contenido) ─── */
+.inline-img-panel{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:500px;background:var(--azul-panel);border:1px solid var(--borde);border-radius:16px;padding:20px;z-index:99999;display:none;}
+.inline-img-panel.show{display:block;}
+.inline-img-panel h4{font-family:'Playfair Display',serif;font-size:16px;color:#fff;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;}
+.inline-img-panel h4 button{background:none;border:none;color:var(--texto-suave);font-size:16px;cursor:pointer;}
+.inline-img-tabs{display:flex;gap:0;margin-bottom:12px;border:1px solid var(--borde);border-radius:8px;overflow:hidden;}
+.inline-img-tab{flex:1;padding:8px;text-align:center;font-size:12px;font-weight:600;color:var(--texto-suave);cursor:pointer;border:none;background:none;font-family:'DM Sans',sans-serif;transition:.2s;}
+.inline-img-tab.active{background:var(--rojo);color:#fff;}
+.panel-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99998;display:none;}
+.panel-backdrop.show{display:block;}
+
 /* ─── GESTIONAR LISTA ─── */
 .manage-list{display:flex;flex-direction:column;gap:12px;}
 .manage-item{background:rgba(255,255,255,.04);border:1px solid var(--borde);border-radius:12px;overflow:hidden;display:flex;align-items:center;}
@@ -306,7 +317,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
 .admin-bar.show{display:flex;}
 .admin-info{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--texto-suave);}
 .admin-info i{color:var(--rojo);}
-.admin-actions{display:flex;gap:10px;}
+.admin-actions{display:flex;gap:10px;flex-wrap:wrap;}
 .btn-new-post{background:var(--rojo);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;transition:.2s;}
 .btn-new-post:hover{background:var(--rojo-dark);}
 .btn-logout{background:var(--borde);color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;}
@@ -316,17 +327,10 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
 .edit-mode-banner.show{display:flex;}
 .btn-cancel-edit{margin-left:auto;background:rgba(34,158,217,.2);border:1px solid rgba(34,158,217,.3);color:#229ed9;padding:4px 12px;border-radius:6px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;}
 
-/* ─── EDITABLE OVERLAY (modo admin) ─── */
-.editable-indicator{outline:2px dashed rgba(232,0,28,.5);outline-offset:3px;cursor:text;position:relative;transition:.2s;}
-.editable-indicator:hover{outline-color:var(--rojo);}
-.editable-indicator::before{content:attr(data-label);position:absolute;top:-20px;left:0;background:var(--rojo);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;letter-spacing:.5px;text-transform:uppercase;pointer-events:none;white-space:nowrap;}
-
 /* ─── TOAST ─── */
 .toast{position:fixed;bottom:75px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--azul-card);border:1px solid var(--borde);color:#fff;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:500;z-index:99999;opacity:0;pointer-events:none;transition:all .3s;display:flex;align-items:center;gap:10px;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-.toast.success i{color:#25d366;}
-.toast.error i{color:var(--rojo);}
-.toast.info i{color:#229ed9;}
+.toast.success i{color:#25d366;}.toast.error i{color:var(--rojo);}.toast.info i{color:#229ed9;}
 
 /* ─── CONFIRM ─── */
 .confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:99998;display:none;justify-content:center;align-items:center;}
@@ -337,7 +341,47 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
 .btn-cancel{flex:1;padding:12px;background:var(--borde);border:none;border-radius:10px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
 .btn-confirm-del{flex:1;padding:12px;background:var(--rojo);border:none;border-radius:10px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
 
-/* ─── RESPONSIVE ─── */
+/* ─── VISUAL EDITOR (EDITOR DE PÁGINA COMPLETO) ─── */
+.ve-bar{position:fixed;top:0;left:0;right:0;height:52px;background:rgba(7,16,29,.98);border-bottom:2px solid var(--rojo);display:none;align-items:center;gap:10px;padding:0 16px;z-index:99990;flex-wrap:nowrap;overflow-x:auto;}
+.ve-bar.show{display:flex;}
+.ve-bar-title{font-size:12px;font-weight:700;color:var(--rojo);letter-spacing:1px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.ve-sep{width:1px;height:28px;background:var(--borde);flex-shrink:0;}
+.ve-group{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.ve-label{font-size:10px;color:var(--texto-suave);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
+.ve-color{width:30px;height:30px;border-radius:6px;border:1px solid var(--borde);cursor:pointer;padding:2px;}
+.ve-select{padding:5px 8px;background:rgba(255,255,255,.07);border:1px solid var(--borde);color:#fff;border-radius:6px;font-size:11px;font-family:'DM Sans',sans-serif;cursor:pointer;outline:none;}
+.ve-select option{background:var(--azul-panel);}
+.ve-btn{padding:6px 12px;border-radius:7px;border:none;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:5px;transition:.2s;}
+.ve-btn-red{background:var(--rojo);color:#fff;}
+.ve-btn-red:hover{background:var(--rojo-dark);}
+.ve-btn-green{background:#1a7a44;color:#fff;}
+.ve-btn-green:hover{background:#145c34;}
+.ve-btn-gray{background:var(--borde);color:#fff;}
+.ve-btn-gray:hover{background:#2a4060;}
+
+/* Modo edición visual — elementos seleccionables */
+body.ve-mode [data-ve]{outline:2px dashed transparent;outline-offset:3px;cursor:pointer;transition:outline .15s;}
+body.ve-mode [data-ve]:hover{outline-color:rgba(232,0,28,.6);}
+body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
+
+/* Panel flotante de propiedades */
+.ve-props-panel{position:fixed;background:var(--azul-panel);border:1px solid var(--borde);border-radius:14px;padding:16px;width:260px;z-index:99991;display:none;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.ve-props-panel.show{display:block;}
+.ve-props-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.ve-props-header span{font-size:12px;font-weight:700;color:var(--rojo);text-transform:uppercase;letter-spacing:.5px;}
+.ve-props-close{background:none;border:none;color:var(--texto-suave);font-size:14px;cursor:pointer;}
+.ve-prop{margin-bottom:10px;}
+.ve-prop label{display:block;font-size:10px;color:var(--texto-suave);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.ve-prop input[type=text],.ve-prop input[type=number],.ve-prop select{width:100%;padding:7px 9px;background:rgba(255,255,255,.07);border:1px solid var(--borde);color:#fff;border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;}
+.ve-prop input[type=text]:focus,.ve-prop input[type=number]:focus{border-color:var(--rojo);}
+.ve-prop-row{display:flex;gap:6px;}
+.ve-prop-row input,.ve-prop-row select{flex:1;}
+.ve-prop input[type=color]{width:36px;height:30px;border-radius:6px;border:1px solid var(--borde);cursor:pointer;padding:2px;}
+.ve-prop-inline{display:flex;align-items:center;gap:8px;}
+.ve-prop-inline label{margin-bottom:0;flex-shrink:0;}
+.btn-apply-text{width:100%;padding:8px;background:var(--rojo);color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:4px;}
+
+/* ─── RESPONSIVE MÓVIL — FIX HERO ─── */
 @media(max-width:960px){
   .featured-card{grid-template-columns:1fr;}
   .featured-img{min-height:260px;}
@@ -347,6 +391,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
   .modal-hero-img{height:220px;}
   .player-viz{display:none;}
 }
+
 @media(max-width:660px){
   header{padding:0 14px;}
   .logo-text span:first-child{font-size:13px;}
@@ -358,23 +403,233 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
   .player{padding:0 12px;gap:8px;}
   .vol-wrap{display:none;}
   .player-scroll-wrap{width:90px;}
+
+  /* ── FIX PRINCIPAL MÓVIL: elimina espacio negro ── */
+  .hero{
+    min-height:100svh;   /* usa svh para excluir barras del navegador */
+    padding:80px 5% 40px;
+    align-items:flex-end; /* texto abajo, persona arriba */
+  }
+  .hero-bg img{
+    object-position:70% top;  /* 70% muestra a la persona (lado derecho) */
+    animation:heroPanMobile 22s ease-in-out infinite alternate;
+  }
+  /* En móvil: la persona siempre aparece en cuadro, pan sutil de derecha a izquierda */
+  @keyframes heroPanMobile{
+    0%  {transform:scale(1.06) translateX(0%);}
+    50% {transform:scale(1.1)  translateX(-5%);}
+    100%{transform:scale(1.07) translateX(-3%);}
+  }
+  .hero::after{height:200px;} /* más gradiente abajo para no cortar */
+  .hero-inner{max-width:100%;}
+  .hero h1{font-size:clamp(30px,7vw,48px);}
 }
 </style>
 </head>
 <body>
 
+<!-- ─── BARRA EDITOR VISUAL (solo admin) ─── -->
+<div class="ve-bar" id="veBar">
+  <span class="ve-bar-title"><i class="fas fa-magic"></i> Editor Visual</span>
+  <div class="ve-sep"></div>
+
+  <!-- Color acento -->
+  <div class="ve-group">
+    <span class="ve-label">Acento</span>
+    <input type="color" class="ve-color" id="veColorAccent" value="#e8001c" oninput="veApplyColor('rojo',this.value)"/>
+  </div>
+
+  <!-- Color fondo -->
+  <div class="ve-group">
+    <span class="ve-label">Fondo</span>
+    <input type="color" class="ve-color" id="veColorBg" value="#07101d" oninput="veApplyColor('negro',this.value)"/>
+  </div>
+
+  <!-- Color cards -->
+  <div class="ve-group">
+    <span class="ve-label">Cards</span>
+    <input type="color" class="ve-color" id="veColorCard" value="#101f38" oninput="veApplyColor('azul-card',this.value)"/>
+  </div>
+
+  <!-- Color texto -->
+  <div class="ve-group">
+    <span class="ve-label">Texto</span>
+    <input type="color" class="ve-color" id="veColorText" value="#e8edf5" oninput="veApplyColor('texto',this.value)"/>
+  </div>
+
+  <div class="ve-sep"></div>
+
+  <!-- Fuente global -->
+  <div class="ve-group">
+    <span class="ve-label">Fuente</span>
+    <select class="ve-select" onchange="veApplyFont(this.value)">
+      <option value="'DM Sans',sans-serif">DM Sans</option>
+      <option value="'Georgia',serif">Georgia</option>
+      <option value="'Trebuchet MS',sans-serif">Trebuchet</option>
+      <option value="'Courier New',monospace">Courier</option>
+      <option value="'Arial',sans-serif">Arial</option>
+      <option value="'Verdana',sans-serif">Verdana</option>
+    </select>
+  </div>
+
+  <div class="ve-sep"></div>
+
+  <!-- Imagen hero -->
+  <div class="ve-group">
+    <button class="ve-btn ve-btn-gray" onclick="veChangeHeroImg()"><i class="fas fa-image"></i> Imagen Hero</button>
+  </div>
+
+  <!-- Modo editar textos -->
+  <div class="ve-group">
+    <button class="ve-btn ve-btn-gray" id="btnVeEditMode" onclick="veToggleEditMode()"><i class="fas fa-mouse-pointer"></i> Editar Elementos</button>
+  </div>
+
+  <div class="ve-sep"></div>
+
+  <!-- Exportar -->
+  <button class="ve-btn ve-btn-green" onclick="veExportHTML()"><i class="fas fa-download"></i> Exportar HTML</button>
+
+  <!-- Cerrar editor visual -->
+  <button class="ve-btn ve-btn-gray" onclick="veClose()"><i class="fas fa-times"></i> Cerrar</button>
+</div>
+
+<!-- Panel flotante de propiedades de elemento -->
+<div class="ve-props-panel" id="vePropsPanel">
+  <div class="ve-props-header">
+    <span id="vePropTitle">Elemento</span>
+    <button class="ve-props-close" onclick="veCloseProps()"><i class="fas fa-times"></i></button>
+  </div>
+
+  <div class="ve-prop" id="vePropTextWrap">
+    <label>Texto / Contenido</label>
+    <input type="text" id="vePropText" placeholder="Escribe aquí..."/>
+  </div>
+
+  <div class="ve-prop">
+    <label>Color de Texto</label>
+    <div class="ve-prop-inline">
+      <input type="color" id="vePropColor" value="#e8edf5"/>
+      <span style="font-size:11px;color:var(--texto-suave);">Selecciona el color</span>
+    </div>
+  </div>
+
+  <div class="ve-prop">
+    <label>Tamaño de fuente (px)</label>
+    <input type="number" id="vePropSize" placeholder="ej: 16" min="8" max="120"/>
+  </div>
+
+  <div class="ve-prop">
+    <label>Peso de fuente</label>
+    <select id="vePropWeight">
+      <option value="">— sin cambio —</option>
+      <option value="300">Delgada (300)</option>
+      <option value="400">Normal (400)</option>
+      <option value="500">Media (500)</option>
+      <option value="600">Semi-negrita (600)</option>
+      <option value="700">Negrita (700)</option>
+      <option value="900">Extra-negrita (900)</option>
+    </select>
+  </div>
+
+  <div class="ve-prop">
+    <label>Color de fondo</label>
+    <div class="ve-prop-inline">
+      <input type="color" id="vePropBg" value="#101f38"/>
+      <span style="font-size:11px;color:var(--texto-suave);">Fondo del elemento</span>
+    </div>
+  </div>
+
+  <div class="ve-prop">
+    <label>Padding (px)</label>
+    <div class="ve-prop-row">
+      <input type="number" id="vePropPadT" placeholder="Arr" min="0" max="200"/>
+      <input type="number" id="vePropPadH" placeholder="Lat" min="0" max="200"/>
+      <input type="number" id="vePropPadB" placeholder="Aba" min="0" max="200"/>
+    </div>
+  </div>
+
+  <div class="ve-prop">
+    <label>Border Radius (px)</label>
+    <input type="number" id="vePropRadius" placeholder="ej: 8" min="0" max="100"/>
+  </div>
+
+  <button class="btn-apply-text" onclick="veApplyProps()"><i class="fas fa-check"></i> Aplicar Cambios</button>
+  <button class="btn-apply-text" style="background:var(--borde);margin-top:4px;" onclick="veResetEl()"><i class="fas fa-undo"></i> Restaurar Original</button>
+</div>
+
+<!-- Panel búsqueda imagen para editor visual hero -->
+<div class="panel-backdrop" id="veImgBackdrop" onclick="veCloseImgPanel()"></div>
+<div class="inline-img-panel" id="veImgPanel">
+  <h4>Cambiar imagen del Hero <button onclick="veCloseImgPanel()"><i class="fas fa-times"></i></button></h4>
+  <div class="inline-img-tabs">
+    <button class="inline-img-tab active" onclick="veImgTabSwitch('url',this)">URL directa</button>
+    <button class="inline-img-tab" onclick="veImgTabSwitch('search',this)">Buscar en Unsplash</button>
+    <button class="inline-img-tab" onclick="veImgTabSwitch('upload',this)">Subir archivo</button>
+  </div>
+  <div id="veImgTabUrl">
+    <input type="text" id="veHeroImgUrl" placeholder="https://..." style="width:100%;padding:9px 12px;background:rgba(255,255,255,.07);border:1px solid var(--borde);color:#fff;border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:8px;"/>
+    <button class="ve-btn ve-btn-red" style="width:100%;" onclick="veApplyHeroImgUrl()"><i class="fas fa-check"></i> Aplicar URL</button>
+  </div>
+  <div id="veImgTabSearch" style="display:none;">
+    <div class="unsplash-search" style="margin-bottom:8px;">
+      <input type="text" id="veUnsplashQ" placeholder="ej: noticias, ciudad..." onkeydown="if(event.key==='Enter')veUnsplashSearch()"/>
+      <button onclick="veUnsplashSearch()"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="unsplash-grid" id="veUnsplashGrid"><div class="unsplash-loading">Busca una imagen arriba</div></div>
+    <p style="font-size:10px;color:var(--texto-suave);margin-top:6px;">Fotos de Unsplash · Uso libre</p>
+  </div>
+  <div id="veImgTabUpload" style="display:none;">
+    <div class="img-upload-area">
+      <input type="file" accept="image/*" onchange="veHandleHeroFile(this)"/>
+      <i class="fas fa-cloud-upload-alt"></i>
+      <span>Haz clic o arrastra una imagen</span>
+    </div>
+  </div>
+</div>
+
+<!-- Panel búsqueda imagen inline (en cuerpo de noticia) -->
+<div class="panel-backdrop" id="inlineImgBackdrop" onclick="closeInlineImgPanel()"></div>
+<div class="inline-img-panel" id="inlineImgPanel">
+  <h4>Insertar imagen en noticia <button onclick="closeInlineImgPanel()"><i class="fas fa-times"></i></button></h4>
+  <div class="inline-img-tabs">
+    <button class="inline-img-tab active" onclick="inlineImgTabSwitch('url',this)">URL directa</button>
+    <button class="inline-img-tab" onclick="inlineImgTabSwitch('search',this)">Buscar Unsplash</button>
+    <button class="inline-img-tab" onclick="inlineImgTabSwitch('upload',this)">Subir / Comprimir</button>
+  </div>
+  <div id="inlineTabUrl">
+    <input type="text" id="inlineImgUrl" placeholder="https://..." style="width:100%;padding:9px 12px;background:rgba(255,255,255,.07);border:1px solid var(--borde);color:#fff;border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:8px;"/>
+    <button class="ve-btn ve-btn-red" style="width:100%;" onclick="inlineInsertUrl()"><i class="fas fa-check"></i> Insertar imagen</button>
+  </div>
+  <div id="inlineTabSearch" style="display:none;">
+    <div class="unsplash-search" style="margin-bottom:8px;">
+      <input type="text" id="inlineUnsplashQ" placeholder="ej: tecnología, política..." onkeydown="if(event.key==='Enter')inlineUnsplashSearch()"/>
+      <button onclick="inlineUnsplashSearch()"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="unsplash-grid" id="inlineUnsplashGrid"><div class="unsplash-loading">Busca una imagen arriba</div></div>
+    <p style="font-size:10px;color:var(--texto-suave);margin-top:6px;">Fotos de Unsplash · Uso libre</p>
+  </div>
+  <div id="inlineTabUpload" style="display:none;">
+    <div class="img-upload-area">
+      <input type="file" accept="image/*" onchange="inlineHandleUpload(this)"/>
+      <i class="fas fa-compress-arrows-alt"></i>
+      <span id="inlineUploadLabel">Subir imagen — se comprimirá automáticamente<br><small>Máx 1200px · ~150kb</small></span>
+    </div>
+    <canvas id="compressCanvas" style="display:none;"></canvas>
+  </div>
+</div>
+
 <!-- ─── HEADER ─── -->
 <header>
-  <a class="logo" href="#inicio">
+  <a class="logo" href="#inicio" data-ve="logo-text">
     <div class="logo-icon">ID</div>
     <div class="logo-text">
-      <span>Infórmate Con La Dama</span>
-      <span>Barranquilla · Noticias</span>
+      <span data-ve="header-title">Infórmate Con La Dama</span>
+      <span data-ve="header-sub">Barranquilla · Noticias</span>
     </div>
   </a>
   <nav>
-    <a href="#inicio" class="nav-link">Inicio</a>
-    <a href="#noticias" class="nav-link">Noticias</a>
+    <a href="#inicio" class="nav-link" data-ve="nav-inicio">Inicio</a>
+    <a href="#noticias" class="nav-link" data-ve="nav-noticias">Noticias</a>
     <button class="btn-login" onclick="openLogin()" title="Acceso Administrador">
       <i class="fas fa-user-circle"></i>
     </button>
@@ -390,20 +645,20 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
   <div class="admin-actions">
     <button class="btn-new-post" onclick="openEditor('new')"><i class="fas fa-plus"></i> Nueva Noticia</button>
     <button class="btn-new-post" onclick="openEditor('manage')" style="background:var(--azul-card);border:1px solid var(--borde);"><i class="fas fa-list"></i> Gestionar</button>
+    <button class="btn-new-post" onclick="veOpen()" style="background:#1a5c30;border:1px solid #2a8a48;"><i class="fas fa-magic"></i> Editar Web</button>
     <button class="btn-logout" onclick="logOut()"><i class="fas fa-sign-out-alt"></i></button>
   </div>
 </div>
 
 <!-- ─── HERO ─── -->
 <section class="hero" id="inicio">
-  <!-- Imagen con zoom animado -->
-  <div class="hero-bg">
-    <img src="https://scontent.fpty1-1.fna.fbcdn.net/v/t39.30808-6/531065299_122095221380983916_6991614046435554322_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeFO5DsBpMr3G_zY77yV4POcG-RwA3RqW3cb5HADdGpbdwLDFnFtLseWUQ7oOwRd_XIJeZNa7aVLK1QQ94AnPSYZ&_nc_ohc=XH3Oq5_aDswQ7kNvwFnSV98&_nc_oc=AdrlL89NkigkmjviTC_7lX1BXb_V7-MhpNpSq_Br-bNCvvoZOz1DQM7H_WW_tSue0eg&_nc_zt=23&_nc_ht=scontent.fpty1-1.fna&_nc_gid=Ind8plV6s6F4hT-JKYC7IQ&_nc_ss=7b2a8&oh=00_Af5BZpGMxgUtf_O22lS3gvnlBJSaeWFsDC0h7TWhwKfEgQ&oe=6A09C298" alt="Hero background"/>
+  <div class="hero-bg" id="heroBgWrap">
+    <img id="heroBgImg" src="https://scontent.fpty1-1.fna.fbcdn.net/v/t39.30808-6/531065299_122095221380983916_6991614046435554322_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeFO5DsBpMr3G_zY77yV4POcG-RwA3RqW3cb5HADdGpbdwLDFnFtLseWUQ7oOwRd_XIJeZNa7aVLK1QQ94AnPSYZ&_nc_ohc=XH3Oq5_aDswQ7kNvwFnSV98&_nc_oc=AdrlL89NkigkmjviTC_7lX1BXb_V7-MhpNpSq_Br-bNCvvoZOz1DQM7H_WW_tSue0eg&_nc_zt=23&_nc_ht=scontent.fpty1-1.fna&_nc_gid=Ind8plV6s6F4hT-JKYC7IQ&_nc_ss=7b2a8&oh=00_Af5BZpGMxgUtf_O22lS3gvnlBJSaeWFsDC0h7TWhwKfEgQ&oe=6A09C298" alt="Hero background"/>
   </div>
   <div class="hero-inner">
-    <div class="hero-badge"><span class="live-dot"></span> EN VIVO AHORA</div>
-    <h1>Para Estar<br/><em>Bien Informado</em></h1>
-    <p>Tu portal informativo de confianza. Cobertura local, nacional e internacional con la veracidad que mereces.</p>
+    <div class="hero-badge"><span class="live-dot"></span> <span data-ve="hero-badge">EN VIVO AHORA</span></div>
+    <h1 data-ve="hero-h1">Para Estar<br/><em data-ve="hero-h1-em">Bien Informado</em></h1>
+    <p data-ve="hero-p">Tu portal informativo de confianza. Cobertura local, nacional e internacional con la veracidad que mereces.</p>
   </div>
 </section>
 
@@ -411,8 +666,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
 <section class="section" id="destacada-section" style="display:none;padding-bottom:0;">
   <div class="section-header" style="margin-bottom:28px;">
     <div>
-      <div class="section-label">Último momento</div>
-      <h2 class="section-title">Noticia Destacada</h2>
+      <div class="section-label" data-ve="featured-label">Último momento</div>
+      <h2 class="section-title" data-ve="featured-title">Noticia Destacada</h2>
     </div>
   </div>
   <div id="featured-wrap"></div>
@@ -422,8 +677,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
 <section class="section" id="noticias">
   <div class="section-header">
     <div>
-      <div class="section-label">Actualidad</div>
-      <h2 class="section-title">Últimas Noticias</h2>
+      <div class="section-label" data-ve="news-label">Actualidad</div>
+      <h2 class="section-title" data-ve="news-title">Últimas Noticias</h2>
     </div>
   </div>
   <div class="skeleton-grid" id="loadingGrid">
@@ -437,8 +692,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
 <!-- ─── FOOTER ─── -->
 <div class="divider"></div>
 <footer>
-  <div class="footer-logo">Infórmate <span>Con La Dama</span></div>
-  <div class="footer-copy">2026 © Shirley Díaz · Barranquilla, Colombia</div>
+  <div class="footer-logo" data-ve="footer-logo">Infórmate <span>Con La Dama</span></div>
+  <div class="footer-copy" data-ve="footer-copy">2026 © Shirley Díaz · Barranquilla, Colombia</div>
   <div class="footer-links">
     <a href="#" onclick="openWhatsApp(event)"><i class="fab fa-whatsapp"></i></a>
     <a href="#inicio"><i class="fab fa-facebook"></i></a>
@@ -456,10 +711,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
   <div class="player-brand">
     <div class="player-icon"><i class="fas fa-broadcast-tower"></i></div>
     <div class="player-info">
-      <strong>Radio en Vivo</strong>
-      <!-- Texto scroll emisora -->
+      <strong data-ve="player-label">Radio en Vivo</strong>
       <div class="player-scroll-wrap">
-        <span class="player-scroll-text">www.conectadosturadio.com &nbsp;•&nbsp; www.conectadosturadio.com &nbsp;•&nbsp;</span>
+        <span class="player-scroll-text" data-ve="player-scroll">www.conectadosturadio.com &nbsp;•&nbsp; www.conectadosturadio.com &nbsp;•&nbsp;</span>
       </div>
     </div>
   </div>
@@ -550,15 +804,35 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
         <input type="text" id="inpTitle" placeholder="Escribe el titular aquí..."/>
       </div>
 
-      <!-- Imagen: URL o subir/pegar -->
+      <!-- Imagen principal: URL + buscador Unsplash + subir/pegar -->
       <div class="form-group">
         <label>Imagen Principal</label>
-        <input type="text" id="inpImage" placeholder="https://... o sube/pega imagen abajo"/>
+        <input type="text" id="inpImage" placeholder="https://... o usa las opciones abajo" oninput="previewMainImg(this.value)"/>
+
+        <!-- Botón para buscador Unsplash portada -->
+        <button class="btn-unsplash-toggle" onclick="toggleUnsplashPanel()">
+          <i class="fas fa-search"></i> Buscar imagen en Unsplash
+        </button>
+
+        <!-- Panel Unsplash portada -->
+        <div class="unsplash-panel" id="unsplashPanelMain">
+          <div class="unsplash-search">
+            <input type="text" id="unsplashMainQ" placeholder="ej: barranquilla, noticias..." onkeydown="if(event.key==='Enter')searchUnsplashMain()"/>
+            <button onclick="searchUnsplashMain()"><i class="fas fa-search"></i></button>
+          </div>
+          <div class="unsplash-grid" id="unsplashMainGrid">
+            <div class="unsplash-loading">Busca una imagen arriba</div>
+          </div>
+          <p style="font-size:10px;color:var(--texto-suave);margin-top:6px;">Fotos gratuitas de Unsplash</p>
+        </div>
+
+        <!-- Subir desde archivo con compresión -->
         <div class="img-upload-area" id="imgUploadArea" title="Haz clic o arrastra una imagen">
           <input type="file" id="imgFileInput" accept="image/*" onchange="handleImgFile(this)"/>
           <i class="fas fa-cloud-upload-alt"></i>
-          <span id="imgUploadLabel">Subir imagen desde móvil / PC<br><small>o pegar con Ctrl+V</small></span>
+          <span id="imgUploadLabel">Subir imagen desde móvil / PC &nbsp;·&nbsp; se comprimirá automáticamente<br><small>Máx 1200px · ~150kb · o pegar con Ctrl+V</small></span>
         </div>
+        <canvas id="mainCompressCanvas" style="display:none;"></canvas>
         <img id="imgPreview" src="" alt="" style="display:none;width:100%;border-radius:8px;margin-top:6px;max-height:140px;object-fit:cover;"/>
       </div>
 
@@ -601,9 +875,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
           <div class="tb-sep"></div>
           <input type="color" class="tb-color" value="#e8edf5" onchange="execCmd('foreColor',this.value)" title="Color texto"/>
           <button class="tb-btn" onclick="insertLink()" title="Enlace"><i class="fas fa-link"></i></button>
-          <!-- Insertar imagen en cuerpo -->
-          <button class="tb-btn" onclick="insertInlineImgPrompt()" title="Imagen inline"><i class="fas fa-image"></i></button>
-          <!-- Insertar video (YouTube/Instagram/FB/TikTok) -->
+          <!-- Insertar imagen inline con panel completo -->
+          <button class="tb-btn" onclick="openInlineImgPanel()" title="Insertar imagen"><i class="fas fa-image"></i></button>
+          <!-- Insertar video -->
           <button class="tb-btn" onclick="insertVideoEmbed()" title="Insertar video"><i class="fas fa-film"></i></button>
           <div class="tb-sep"></div>
           <button class="tb-btn" onclick="execCmd('removeFormat')" title="Limpiar"><i class="fas fa-eraser"></i></button>
@@ -659,18 +933,23 @@ const BLOG_ID   = "7955178678531945784";
 const API_KEY   = "AIzaSyCdWxkJGmL0Hq5bn_MX_XoTuuoTk6JMjT8";
 const CLIENT_ID = "882977688404-qgok2a3nitjvp1m19j1onosg91h0i99a.apps.googleusercontent.com";
 const WA_NUMBER = "50765489138";
+const UNSPLASH_ACCESS_KEY = "jvCzFhSNDe3aCHVVUSmk5pVAuDTbN2FuvMb0sifxnHk"; // clave pública demo
 
 /* ────────────────────────────────────────────
    STATE
 ──────────────────────────────────────────── */
-let accessToken     = '';
-let allPosts        = [];
-let pendingDeleteId = null;
-let editingPostId   = null;
+let accessToken      = '';
+let allPosts         = [];
+let pendingDeleteId  = null;
+let editingPostId    = null;
 let tokenClient;
+let veSelectedEl     = null;
+let veOrigStyles     = new WeakMap();
+let veEditModeActive = false;
+let savedRichSel     = null; // para restaurar selección en editor al insertar imagen
 
 /* ────────────────────────────────────────────
-   AUTOPLAY RADIO — múltiples estrategias
+   AUTOPLAY RADIO
 ──────────────────────────────────────────── */
 const radio   = document.getElementById('radio');
 const playBtn = document.getElementById('playBtn');
@@ -679,135 +958,107 @@ let   playing = false;
 
 radio.volume = 0.8;
 
-function startRadio() {
-  radio.play().then(() => {
-    playing = true;
-    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+function startRadio(){
+  radio.play().then(()=>{
+    playing=true;
+    playBtn.innerHTML='<i class="fas fa-pause"></i>';
     viz.classList.remove('paused');
-  }).catch(() => {
-    // Falló el autoplay (política del navegador). Se queda en pausa,
-    // el usuario presiona play manualmente.
-  });
+  }).catch(()=>{});
 }
-
-function toggleRadio() {
-  if (!playing) {
-    radio.play().then(() => {
-      playing = true;
-      playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+function toggleRadio(){
+  if(!playing){
+    radio.play().then(()=>{
+      playing=true;
+      playBtn.innerHTML='<i class="fas fa-pause"></i>';
       viz.classList.remove('paused');
-    }).catch(() => showToast('No se pudo conectar a la radio','error'));
-  } else {
+    }).catch(()=>showToast('No se pudo conectar a la radio','error'));
+  }else{
     radio.pause();
-    playing = false;
-    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+    playing=false;
+    playBtn.innerHTML='<i class="fas fa-play"></i>';
     viz.classList.add('paused');
   }
 }
-
-function setVol(v) { radio.volume = parseFloat(v); }
-
-radio.addEventListener('error', () => {
-  playing = false;
-  playBtn.innerHTML = '<i class="fas fa-play"></i>';
-  viz.classList.add('paused');
-});
-
-// Intentar autoplay al cargar
-window.addEventListener('load', () => {
-  startRadio();
-});
-
-// Si el usuario interactúa con la página y aún no ha iniciado
-document.addEventListener('click', () => {
-  if (!playing) startRadio();
-}, { once: true });
-
-document.addEventListener('touchstart', () => {
-  if (!playing) startRadio();
-}, { once: true });
+function setVol(v){radio.volume=parseFloat(v);}
+radio.addEventListener('error',()=>{playing=false;playBtn.innerHTML='<i class="fas fa-play"></i>';viz.classList.add('paused');});
+window.addEventListener('load',()=>startRadio());
+document.addEventListener('click',()=>{if(!playing)startRadio();},{once:true});
+document.addEventListener('touchstart',()=>{if(!playing)startRadio();},{once:true});
 
 /* ────────────────────────────────────────────
-   WHATSAPP NATIVO
+   WHATSAPP
 ──────────────────────────────────────────── */
-function openWhatsApp(e, customText) {
-  if (e) e.preventDefault();
-  const text    = customText || 'Hola, me contacto desde Infórmate Con La Dama';
-  const encoded = encodeURIComponent(text);
-  const nativeUrl = `whatsapp://send?phone=${WA_NUMBER}&text=${encoded}`;
-  const webUrl    = `https://wa.me/${WA_NUMBER}?text=${encoded}`;
-  const now = Date.now();
-  window.location.href = nativeUrl;
-  setTimeout(() => { if (Date.now() - now < 1500) window.open(webUrl, '_blank'); }, 800);
+function openWhatsApp(e,customText){
+  if(e)e.preventDefault();
+  const text=customText||'Hola, me contacto desde Infórmate Con La Dama';
+  const encoded=encodeURIComponent(text);
+  const nativeUrl=`whatsapp://send?phone=${WA_NUMBER}&text=${encoded}`;
+  const webUrl=`https://wa.me/${WA_NUMBER}?text=${encoded}`;
+  const now=Date.now();
+  window.location.href=nativeUrl;
+  setTimeout(()=>{if(Date.now()-now<1500)window.open(webUrl,'_blank');},800);
 }
 
 /* ────────────────────────────────────────────
    HELPERS
 ──────────────────────────────────────────── */
-function fmtDate(iso) {
-  if (!iso) return '';
-  return new Date(iso).toLocaleDateString('es-CO', {day:'2-digit',month:'short',year:'numeric'});
+function fmtDate(iso){
+  if(!iso)return'';
+  return new Date(iso).toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'numeric'});
 }
-
-function extractImg(html) {
-  const d = document.createElement('div');
-  d.innerHTML = html;
-  const first = d.querySelector('[data-img]');
-  if (first) return first.getAttribute('data-img');
-  const img = d.querySelector('img');
-  return img ? img.src : 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1200';
+function extractImg(html){
+  const d=document.createElement('div');d.innerHTML=html;
+  const first=d.querySelector('[data-img]');
+  if(first)return first.getAttribute('data-img');
+  const img=d.querySelector('img');
+  return img?img.src:'https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1200';
 }
-
-function extractText(html) {
-  const d = document.createElement('div');
-  d.innerHTML = html;
-  return (d.innerText || d.textContent || '').trim();
+function extractText(html){
+  const d=document.createElement('div');d.innerHTML=html;
+  return(d.innerText||d.textContent||'').trim();
 }
-
-function extractCat(html) {
-  const d = document.createElement('div');
-  d.innerHTML = html;
-  const el = d.querySelector('[data-cat]');
-  return el ? el.getAttribute('data-cat') : 'Noticias';
+function extractCat(html){
+  const d=document.createElement('div');d.innerHTML=html;
+  const el=d.querySelector('[data-cat]');
+  return el?el.getAttribute('data-cat'):'Noticias';
 }
-
-function updateOG(title, description, image, url) {
-  const set = (id, val) => { const el = document.getElementById(id); if (el) el.setAttribute('content', val); };
-  set('og-title', title); set('og-description', description); set('og-image', image); set('og-url', url || window.location.href);
-  set('tw-title', title); set('tw-description', description); set('tw-image', image);
-  document.title = title + ' | Infórmate Con La Dama';
+function updateOG(title,description,image,url){
+  const set=(id,val)=>{const el=document.getElementById(id);if(el)el.setAttribute('content',val);};
+  set('og-title',title);set('og-description',description);set('og-image',image);set('og-url',url||window.location.href);
+  set('tw-title',title);set('tw-description',description);set('tw-image',image);
+  document.title=title+' | Infórmate Con La Dama';
 }
 
 /* ────────────────────────────────────────────
    TOAST
 ──────────────────────────────────────────── */
-function showToast(msg, type='success') {
-  const t = document.getElementById('toast');
-  t.className = 'toast ' + type;
-  const icons = {success:'fa-check-circle',error:'fa-times-circle',info:'fa-info-circle'};
-  t.querySelector('i').className = 'fas ' + (icons[type]||'fa-check-circle');
-  document.getElementById('toastMsg').textContent = msg;
+function showToast(msg,type='success'){
+  const t=document.getElementById('toast');
+  t.className='toast '+type;
+  const icons={success:'fa-check-circle',error:'fa-times-circle',info:'fa-info-circle'};
+  t.querySelector('i').className='fas '+(icons[type]||'fa-check-circle');
+  document.getElementById('toastMsg').textContent=msg;
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3500);
+  setTimeout(()=>t.classList.remove('show'),3500);
 }
 
 /* ────────────────────────────────────────────
    POPUPS
 ──────────────────────────────────────────── */
-function openLogin()      { document.getElementById('loginPopup').style.display = 'flex'; }
-function closePopup(id)   { document.getElementById(id).style.display = 'none'; }
-function closeOnBg(e, id) { if (e.target === document.getElementById(id)) closePopup(id); }
+function openLogin(){document.getElementById('loginPopup').style.display='flex';}
+function closePopup(id){document.getElementById(id).style.display='none';}
+function closeOnBg(e,id){if(e.target===document.getElementById(id))closePopup(id);}
 
 /* ────────────────────────────────────────────
    GOOGLE OAUTH
 ──────────────────────────────────────────── */
-function googleLogin() {
-  tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: CLIENT_ID,
-    scope: 'https://www.googleapis.com/auth/blogger',
-    callback: async(res) => {
-      if (res.error) { showToast('Error de autenticación','error'); return; }
-      accessToken = res.access_token;
+function googleLogin(){
+  tokenClient=google.accounts.oauth2.initTokenClient({
+    client_id:CLIENT_ID,
+    scope:'https://www.googleapis.com/auth/blogger',
+    callback:async(res)=>{
+      if(res.error){showToast('Error de autenticación','error');return;}
+      accessToken=res.access_token;
       closePopup('loginPopup');
       document.getElementById('adminBar').classList.add('show');
       showToast('¡Bienvenida, administradora!','success');
@@ -815,493 +1066,827 @@ function googleLogin() {
   });
   tokenClient.requestAccessToken();
 }
-
-function logOut() {
-  accessToken = '';
+function logOut(){
+  accessToken='';
   document.getElementById('adminBar').classList.remove('show');
   closeEditorPanel();
+  veClose();
   showToast('Sesión cerrada','info');
 }
 
 /* ────────────────────────────────────────────
    EDITOR PANEL
 ──────────────────────────────────────────── */
-function openEditor(tab='new') {
-  document.getElementById('editorOverlay').style.display = 'block';
-  const panel = document.getElementById('editorPanel');
-  panel.style.display = 'flex';
-  setTimeout(() => panel.classList.add('open'), 10);
+function openEditor(tab='new'){
+  document.getElementById('editorOverlay').style.display='block';
+  const panel=document.getElementById('editorPanel');
+  panel.style.display='flex';
+  setTimeout(()=>panel.classList.add('open'),10);
   switchTab(tab);
 }
-
-function closeEditorPanel() {
-  const panel = document.getElementById('editorPanel');
+function closeEditorPanel(){
+  const panel=document.getElementById('editorPanel');
   panel.classList.remove('open');
-  setTimeout(() => {
-    panel.style.display = 'none';
-    document.getElementById('editorOverlay').style.display = 'none';
-  }, 350);
+  setTimeout(()=>{
+    panel.style.display='none';
+    document.getElementById('editorOverlay').style.display='none';
+  },350);
 }
-
-function switchTab(tab) {
-  document.querySelectorAll('.editor-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  const cap = tab.charAt(0).toUpperCase() + tab.slice(1);
-  document.getElementById('tab' + cap).classList.add('active');
-  document.getElementById('content' + cap).classList.add('active');
-  if (tab === 'manage') renderManageList();
+function switchTab(tab){
+  document.querySelectorAll('.editor-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  const cap=tab.charAt(0).toUpperCase()+tab.slice(1);
+  document.getElementById('tab'+cap).classList.add('active');
+  document.getElementById('content'+cap).classList.add('active');
+  if(tab==='manage')renderManageList();
 }
 
 /* ────────────────────────────────────────────
-   RICH TEXT TOOLS
+   IMAGEN PRINCIPAL — PREVIEW
 ──────────────────────────────────────────── */
-function execCmd(cmd, val) {
-  document.getElementById('richEditor').focus();
-  document.execCommand(cmd, false, val || null);
+function previewMainImg(url){
+  if(!url)return;
+  const prev=document.getElementById('imgPreview');
+  prev.src=url;prev.style.display='block';
 }
 
-function updateCharCount() {
-  const text = document.getElementById('richEditor').innerText || '';
-  document.getElementById('charCount').textContent = text.length;
+/* ─── Unsplash buscador (portada) ─── */
+function toggleUnsplashPanel(){
+  const p=document.getElementById('unsplashPanelMain');
+  p.classList.toggle('show');
+}
+async function searchUnsplashMain(){
+  const q=document.getElementById('unsplashMainQ').value.trim();
+  if(!q)return;
+  const grid=document.getElementById('unsplashMainGrid');
+  grid.innerHTML='<div class="unsplash-loading"><i class="fas fa-spinner fa-spin"></i> Buscando...</div>';
+  try{
+    const r=await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(q)}&per_page=12&client_id=${UNSPLASH_ACCESS_KEY}`);
+    const data=await r.json();
+    if(!data.results||!data.results.length){grid.innerHTML='<div class="unsplash-loading">Sin resultados</div>';return;}
+    grid.innerHTML=data.results.map(p=>`<img src="${p.urls.small}" data-full="${p.urls.regular}" onclick="selectUnsplashMain(this)" alt="${p.alt_description||''}"/>`).join('');
+  }catch(e){grid.innerHTML='<div class="unsplash-loading">Error de conexión</div>';}
+}
+function selectUnsplashMain(img){
+  const url=img.getAttribute('data-full');
+  document.getElementById('inpImage').value=url;
+  previewMainImg(url);
+  document.getElementById('imgUploadLabel').innerHTML='<span style="color:#25d366;"><i class="fas fa-check"></i> Imagen de Unsplash seleccionada</span>';
+  document.getElementById('unsplashPanelMain').classList.remove('show');
+  showToast('Imagen seleccionada','success');
 }
 
-function handleEditorKey(e) {
-  if (e.key === 'Tab') { e.preventDefault(); document.execCommand('insertText', false, '  '); }
-}
-
-function insertLink() {
-  const url = prompt('URL del enlace:');
-  if (url) execCmd('createLink', url);
-}
-
-/* ── Insertar imagen inline (prompt URL) ── */
-function insertInlineImgPrompt() {
-  const url = prompt('URL de la imagen:');
-  if (url) {
-    const html = `<img src="${url}" style="max-width:100%;border-radius:8px;" alt="imagen"/>`;
-    document.getElementById('richEditor').focus();
-    document.execCommand('insertHTML', false, html);
-  }
-}
-
-/* ── Convertir link de video a embed ── */
-function getEmbedUrl(url) {
-  // YouTube
-  const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-  if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}?rel=0`;
-  // YouTube Shorts
-  const ytShorts = url.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/);
-  if (ytShorts) return `https://www.youtube.com/embed/${ytShorts[1]}`;
-  // Instagram
-  const igMatch = url.match(/instagram\.com\/(p|reel|tv)\/([A-Za-z0-9_-]+)/);
-  if (igMatch) return `https://www.instagram.com/${igMatch[1]}/${igMatch[2]}/embed`;
-  // TikTok
-  const ttMatch = url.match(/tiktok\.com\/@[^/]+\/video\/(\d+)/);
-  if (ttMatch) return `https://www.tiktok.com/embed/v2/${ttMatch[1]}`;
-  // Facebook
-  const fbMatch = url.match(/facebook\.com/);
-  if (fbMatch) return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=false`;
-  // Twitter/X
-  const twMatch = url.match(/twitter\.com|x\.com/);
-  if (twMatch) return null; // X no permite embed simple, skip
-  return null;
-}
-
-function insertVideoEmbed() {
-  const url = prompt('Pega el enlace del video (YouTube, Instagram, TikTok, Facebook):');
-  if (!url) return;
-  const embedUrl = getEmbedUrl(url.trim());
-  if (!embedUrl) {
-    showToast('No se reconoció el formato del video','error');
-    return;
-  }
-  const html = `<div class="embed-wrap"><iframe src="${embedUrl}" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>`;
-  document.getElementById('richEditor').focus();
-  document.execCommand('insertHTML', false, html);
-}
-
-/* ── Pegar imagen desde portapapeles en editor ── */
-function handleEditorPaste(e) {
-  const items = (e.clipboardData || e.originalEvent.clipboardData).items;
-  for (const item of items) {
-    if (item.kind === 'file' && item.type.startsWith('image/')) {
-      e.preventDefault();
-      const file = item.getAsFile();
-      const reader = new FileReader();
-      reader.onload = ev => {
-        const html = `<img src="${ev.target.result}" style="max-width:100%;border-radius:8px;" alt="imagen pegada"/>`;
-        document.execCommand('insertHTML', false, html);
-      };
-      reader.readAsDataURL(file);
-      return;
-    }
-  }
-  // Permitir texto normal
-}
-
-/* ── Subir imagen principal desde archivo ── */
-function handleImgFile(input) {
-  const file = input.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    document.getElementById('inpImage').value = ev.target.result;
-    const prev = document.getElementById('imgPreview');
-    prev.src = ev.target.result;
-    prev.style.display = 'block';
-    document.getElementById('imgUploadLabel').innerHTML = '<span style="color:#25d366;"><i class="fas fa-check"></i> Imagen cargada</span>';
+/* ─── Comprimir imagen con Canvas ─── */
+function compressImage(file,maxW,maxH,quality,callback){
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    const img=new Image();
+    img.onload=()=>{
+      let w=img.width,h=img.height;
+      if(w>maxW){h=Math.round(h*(maxW/w));w=maxW;}
+      if(h>maxH){w=Math.round(w*(maxH/h));h=maxH;}
+      const canvas=document.createElement('canvas');
+      canvas.width=w;canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      callback(canvas.toDataURL('image/jpeg',quality));
+    };
+    img.src=ev.target.result;
   };
   reader.readAsDataURL(file);
 }
 
-// Pegar imagen en el área de upload (imagen principal)
-document.addEventListener('paste', (e) => {
-  // Solo si el editor NO está enfocado
-  if (document.activeElement === document.getElementById('richEditor')) return;
-  const items = (e.clipboardData || e.originalEvent.clipboardData).items;
-  for (const item of items) {
-    if (item.kind === 'file' && item.type.startsWith('image/')) {
-      const file = item.getAsFile();
-      const reader = new FileReader();
-      reader.onload = ev => {
-        document.getElementById('inpImage').value = ev.target.result;
-        const prev = document.getElementById('imgPreview');
-        prev.src = ev.target.result;
-        prev.style.display = 'block';
-        document.getElementById('imgUploadLabel').innerHTML = '<span style="color:#25d366;"><i class="fas fa-check"></i> Imagen pegada</span>';
+/* ─── Subir imagen principal (con compresión) ─── */
+function handleImgFile(input){
+  const file=input.files[0];
+  if(!file)return;
+  compressImage(file,1200,900,0.82,dataUrl=>{
+    document.getElementById('inpImage').value=dataUrl;
+    const prev=document.getElementById('imgPreview');
+    prev.src=dataUrl;prev.style.display='block';
+    document.getElementById('imgUploadLabel').innerHTML='<span style="color:#25d366;"><i class="fas fa-check"></i> Imagen comprimida y cargada</span>';
+  });
+}
+
+// Pegar imagen (portada) con Ctrl+V fuera del editor
+document.addEventListener('paste',(e)=>{
+  if(document.activeElement===document.getElementById('richEditor'))return;
+  const items=(e.clipboardData||e.originalEvent.clipboardData).items;
+  for(const item of items){
+    if(item.kind==='file'&&item.type.startsWith('image/')){
+      const file=item.getAsFile();
+      compressImage(file,1200,900,0.82,dataUrl=>{
+        document.getElementById('inpImage').value=dataUrl;
+        const prev=document.getElementById('imgPreview');
+        prev.src=dataUrl;prev.style.display='block';
+        document.getElementById('imgUploadLabel').innerHTML='<span style="color:#25d366;"><i class="fas fa-check"></i> Imagen pegada y comprimida</span>';
         showToast('Imagen pegada como portada','success');
-      };
-      reader.readAsDataURL(file);
+      });
       break;
     }
   }
 });
 
 /* ────────────────────────────────────────────
+   RICH TEXT TOOLS
+──────────────────────────────────────────── */
+function execCmd(cmd,val){
+  document.getElementById('richEditor').focus();
+  document.execCommand(cmd,false,val||null);
+}
+function updateCharCount(){
+  const text=document.getElementById('richEditor').innerText||'';
+  document.getElementById('charCount').textContent=text.length;
+}
+function handleEditorKey(e){
+  if(e.key==='Tab'){e.preventDefault();document.execCommand('insertText',false,'  ');}
+}
+function insertLink(){
+  const url=prompt('URL del enlace:');
+  if(url)execCmd('createLink',url);
+}
+
+/* ─── Panel de imagen inline (en cuerpo de noticia) ─── */
+function openInlineImgPanel(){
+  // Guardar selección actual del editor
+  const sel=window.getSelection();
+  if(sel&&sel.rangeCount>0)savedRichSel=sel.getRangeAt(0).cloneRange();
+  document.getElementById('inlineImgBackdrop').classList.add('show');
+  document.getElementById('inlineImgPanel').classList.add('show');
+}
+function closeInlineImgPanel(){
+  document.getElementById('inlineImgBackdrop').classList.remove('show');
+  document.getElementById('inlineImgPanel').classList.remove('show');
+}
+function inlineImgTabSwitch(tab,btn){
+  document.querySelectorAll('#inlineImgPanel .inline-img-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('inlineTabUrl').style.display=tab==='url'?'block':'none';
+  document.getElementById('inlineTabSearch').style.display=tab==='search'?'block':'none';
+  document.getElementById('inlineTabUpload').style.display=tab==='upload'?'block':'none';
+}
+function insertImgIntoEditor(url){
+  const editor=document.getElementById('richEditor');
+  editor.focus();
+  if(savedRichSel){
+    const sel=window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(savedRichSel);
+  }
+  const html=`<img src="${url}" style="max-width:100%;border-radius:8px;display:block;margin:8px 0;" alt="imagen"/>`;
+  document.execCommand('insertHTML',false,html);
+  closeInlineImgPanel();
+  updateCharCount();
+}
+function inlineInsertUrl(){
+  const url=document.getElementById('inlineImgUrl').value.trim();
+  if(url)insertImgIntoEditor(url);
+}
+async function inlineUnsplashSearch(){
+  const q=document.getElementById('inlineUnsplashQ').value.trim();
+  if(!q)return;
+  const grid=document.getElementById('inlineUnsplashGrid');
+  grid.innerHTML='<div class="unsplash-loading"><i class="fas fa-spinner fa-spin"></i> Buscando...</div>';
+  try{
+    const r=await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(q)}&per_page=12&client_id=${UNSPLASH_ACCESS_KEY}`);
+    const data=await r.json();
+    if(!data.results||!data.results.length){grid.innerHTML='<div class="unsplash-loading">Sin resultados</div>';return;}
+    grid.innerHTML=data.results.map(p=>`<img src="${p.urls.small}" data-full="${p.urls.regular}" onclick="insertImgIntoEditor(this.getAttribute('data-full'))" alt=""/>`).join('');
+  }catch(e){grid.innerHTML='<div class="unsplash-loading">Error de conexión</div>';}
+}
+function inlineHandleUpload(input){
+  const file=input.files[0];
+  if(!file)return;
+  document.getElementById('inlineUploadLabel').innerHTML='<i class="fas fa-spinner fa-spin"></i> Comprimiendo...';
+  compressImage(file,1200,900,0.80,dataUrl=>{
+    document.getElementById('inlineUploadLabel').innerHTML='<span style="color:#25d366;"><i class="fas fa-check"></i> Imagen lista</span>';
+    insertImgIntoEditor(dataUrl);
+  });
+}
+
+/* ─── Pegar imagen en editor de contenido ─── */
+function handleEditorPaste(e){
+  const items=(e.clipboardData||e.originalEvent.clipboardData).items;
+  for(const item of items){
+    if(item.kind==='file'&&item.type.startsWith('image/')){
+      e.preventDefault();
+      const file=item.getAsFile();
+      compressImage(file,1200,900,0.80,dataUrl=>{
+        const html=`<img src="${dataUrl}" style="max-width:100%;border-radius:8px;display:block;margin:8px 0;" alt="imagen pegada"/>`;
+        document.execCommand('insertHTML',false,html);
+        updateCharCount();
+      });
+      return;
+    }
+  }
+}
+
+/* ─── Video embed ─── */
+function getEmbedUrl(url){
+  const ytMatch=url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  if(ytMatch)return`https://www.youtube.com/embed/${ytMatch[1]}?rel=0`;
+  const ytShorts=url.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/);
+  if(ytShorts)return`https://www.youtube.com/embed/${ytShorts[1]}`;
+  const igMatch=url.match(/instagram\.com\/(p|reel|tv)\/([A-Za-z0-9_-]+)/);
+  if(igMatch)return`https://www.instagram.com/${igMatch[1]}/${igMatch[2]}/embed`;
+  const ttMatch=url.match(/tiktok\.com\/@[^/]+\/video\/(\d+)/);
+  if(ttMatch)return`https://www.tiktok.com/embed/v2/${ttMatch[1]}`;
+  const fbMatch=url.match(/facebook\.com/);
+  if(fbMatch)return`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=false`;
+  return null;
+}
+function insertVideoEmbed(){
+  const url=prompt('Pega el enlace del video (YouTube, Instagram, TikTok, Facebook):');
+  if(!url)return;
+  const embedUrl=getEmbedUrl(url.trim());
+  if(!embedUrl){showToast('No se reconoció el formato del video','error');return;}
+  const html=`<div class="embed-wrap"><iframe src="${embedUrl}" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>`;
+  document.getElementById('richEditor').focus();
+  document.execCommand('insertHTML',false,html);
+}
+
+/* ────────────────────────────────────────────
    GESTIONAR — LISTA EN PANEL
 ──────────────────────────────────────────── */
-function renderManageList() {
-  const box = document.getElementById('manageList');
-  if (!allPosts.length) {
-    box.innerHTML = '<div class="manage-empty"><i class="fas fa-newspaper" style="font-size:32px;margin-bottom:12px;display:block;"></i>No hay noticias publicadas.</div>';
+function renderManageList(){
+  const box=document.getElementById('manageList');
+  if(!allPosts.length){
+    box.innerHTML='<div class="manage-empty"><i class="fas fa-newspaper" style="font-size:32px;margin-bottom:12px;display:block;"></i>No hay noticias publicadas.</div>';
     return;
   }
-  box.innerHTML = allPosts.map(p => {
-    const img  = extractImg(p.content || '');
-    const date = fmtDate(p.published);
-    return `
-      <div class="manage-item">
-        <img class="manage-thumb" src="${img}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="">
-        <div class="manage-thumb-placeholder" style="display:none;"><i class="fas fa-image"></i></div>
-        <div class="manage-info">
-          <h4>${p.title || 'Sin título'}</h4>
-          <span><i class="fas fa-calendar-alt"></i> ${date}</span>
-        </div>
-        <div class="manage-actions">
-          <button class="btn-edit" onclick="startEdit('${p.id}')" title="Editar"><i class="fas fa-pencil-alt"></i></button>
-          <button class="btn-delete" onclick="askDelete('${p.id}')" title="Eliminar"><i class="fas fa-trash"></i></button>
-        </div>
-      </div>`;
+  box.innerHTML=allPosts.map(p=>{
+    const img=extractImg(p.content||'');
+    const date=fmtDate(p.published);
+    return`<div class="manage-item">
+      <img class="manage-thumb" src="${img}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="">
+      <div class="manage-thumb-placeholder" style="display:none;"><i class="fas fa-image"></i></div>
+      <div class="manage-info"><h4>${p.title||'Sin título'}</h4><span><i class="fas fa-calendar-alt"></i> ${date}</span></div>
+      <div class="manage-actions">
+        <button class="btn-edit" onclick="startEdit('${p.id}')" title="Editar"><i class="fas fa-pencil-alt"></i></button>
+        <button class="btn-delete" onclick="askDelete('${p.id}')" title="Eliminar"><i class="fas fa-trash"></i></button>
+      </div>
+    </div>`;
   }).join('');
 }
 
 /* ────────────────────────────────────────────
    EDITAR POST EXISTENTE
 ──────────────────────────────────────────── */
-function startEdit(postId) {
-  const post = allPosts.find(p => p.id === postId);
-  if (!post) return;
-  editingPostId = postId;
-
-  document.getElementById('inpTitle').value = post.title || '';
-  const img = extractImg(post.content || '');
-  const defaultImg = 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1200';
-  const imgVal = img === defaultImg ? '' : img;
-  document.getElementById('inpImage').value = imgVal;
-  if (imgVal) {
-    const prev = document.getElementById('imgPreview');
-    prev.src = imgVal; prev.style.display = 'block';
-  }
-
-  const cat = extractCat(post.content || '');
-  const catSel = document.getElementById('inpCat');
-  [...catSel.options].forEach(o => { if (o.value === cat) catSel.value = cat; });
-
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = post.content || '';
-  const mainImg = tempDiv.querySelector('img.post-main-img');
-  if (mainImg) mainImg.remove();
-  document.getElementById('richEditor').innerHTML = tempDiv.innerHTML;
+function startEdit(postId){
+  const post=allPosts.find(p=>p.id===postId);
+  if(!post)return;
+  editingPostId=postId;
+  document.getElementById('inpTitle').value=post.title||'';
+  const img=extractImg(post.content||'');
+  const defaultImg='https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1200';
+  const imgVal=img===defaultImg?'':img;
+  document.getElementById('inpImage').value=imgVal;
+  if(imgVal){const prev=document.getElementById('imgPreview');prev.src=imgVal;prev.style.display='block';}
+  const cat=extractCat(post.content||'');
+  const catSel=document.getElementById('inpCat');
+  [...catSel.options].forEach(o=>{if(o.value===cat)catSel.value=cat;});
+  const tempDiv=document.createElement('div');
+  tempDiv.innerHTML=post.content||'';
+  const mainImg=tempDiv.querySelector('img.post-main-img');
+  if(mainImg)mainImg.remove();
+  document.getElementById('richEditor').innerHTML=tempDiv.innerHTML;
   updateCharCount();
-
   document.getElementById('editModeBanner').classList.add('show');
-  document.getElementById('btnPublishLabel').textContent = 'Guardar Cambios';
+  document.getElementById('btnPublishLabel').textContent='Guardar Cambios';
   switchTab('new');
 }
-
-function cancelEdit() {
-  editingPostId = null;
-  document.getElementById('inpTitle').value = '';
-  document.getElementById('inpImage').value = '';
-  document.getElementById('richEditor').innerHTML = '';
+function cancelEdit(){
+  editingPostId=null;
+  document.getElementById('inpTitle').value='';
+  document.getElementById('inpImage').value='';
+  document.getElementById('richEditor').innerHTML='';
   document.getElementById('editModeBanner').classList.remove('show');
-  document.getElementById('btnPublishLabel').textContent = 'Publicar Noticia';
-  document.getElementById('imgPreview').style.display = 'none';
-  document.getElementById('imgUploadLabel').innerHTML = 'Subir imagen desde móvil / PC<br><small>o pegar con Ctrl+V</small>';
+  document.getElementById('btnPublishLabel').textContent='Publicar Noticia';
+  document.getElementById('imgPreview').style.display='none';
+  document.getElementById('imgUploadLabel').innerHTML='Subir imagen desde móvil / PC · se comprimirá automáticamente<br><small>Máx 1200px · ~150kb · o pegar con Ctrl+V</small>';
   updateCharCount();
 }
 
 /* ────────────────────────────────────────────
    ELIMINAR POST
 ──────────────────────────────────────────── */
-function askDelete(postId) {
-  pendingDeleteId = postId;
-  document.getElementById('confirmOverlay').style.display = 'flex';
-}
-function closeConfirm() {
-  pendingDeleteId = null;
-  document.getElementById('confirmOverlay').style.display = 'none';
-}
-async function confirmDelete() {
-  if (!pendingDeleteId) { closeConfirm(); return; }
-  try {
-    const r = await fetch(
-      `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts/${pendingDeleteId}`,
-      { method:'DELETE', headers:{'Authorization':'Bearer '+accessToken} }
-    );
-    if (r.ok || r.status===204) {
+function askDelete(postId){pendingDeleteId=postId;document.getElementById('confirmOverlay').style.display='flex';}
+function closeConfirm(){pendingDeleteId=null;document.getElementById('confirmOverlay').style.display='none';}
+async function confirmDelete(){
+  if(!pendingDeleteId){closeConfirm();return;}
+  try{
+    const r=await fetch(`https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts/${pendingDeleteId}`,
+      {method:'DELETE',headers:{'Authorization':'Bearer '+accessToken}});
+    if(r.ok||r.status===204){
       showToast('Noticia eliminada','success');
-      closeConfirm(); await loadPosts(); renderManageList();
-    } else {
-      showToast('Error al eliminar','error'); closeConfirm();
-    }
-  } catch(e) { showToast('Error de conexión','error'); closeConfirm(); }
+      closeConfirm();await loadPosts();renderManageList();
+    }else{showToast('Error al eliminar','error');closeConfirm();}
+  }catch(e){showToast('Error de conexión','error');closeConfirm();}
 }
 
 /* ────────────────────────────────────────────
    PUBLICAR / ACTUALIZAR POST
 ──────────────────────────────────────────── */
-async function publishPost() {
-  const title   = document.getElementById('inpTitle').value.trim();
-  const imgUrl  = document.getElementById('inpImage').value.trim();
-  const content = document.getElementById('richEditor').innerHTML.trim();
-  const cat     = document.getElementById('inpCat').value;
-
-  if (!title || !content || content === '<br>') {
-    showToast('Completa el titular y el contenido','error'); return;
-  }
-
-  const btn = document.getElementById('btnPublish');
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + (editingPostId ? 'Guardando...' : 'Publicando...');
-
-  const html = `<div data-cat="${cat}" data-img="${imgUrl}">
-${imgUrl ? `<img class="post-main-img" src="${imgUrl}" style="width:100%;border-radius:12px;margin-bottom:20px;max-height:520px;object-fit:cover;" alt="${title}"/>` : ''}
+async function publishPost(){
+  const title=document.getElementById('inpTitle').value.trim();
+  const imgUrl=document.getElementById('inpImage').value.trim();
+  const content=document.getElementById('richEditor').innerHTML.trim();
+  const cat=document.getElementById('inpCat').value;
+  if(!title||!content||content==='<br>'){showToast('Completa el titular y el contenido','error');return;}
+  const btn=document.getElementById('btnPublish');
+  btn.disabled=true;
+  btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> '+(editingPostId?'Guardando...':'Publicando...');
+  const html=`<div data-cat="${cat}" data-img="${imgUrl}">
+${imgUrl?`<img class="post-main-img" src="${imgUrl}" style="width:100%;border-radius:12px;margin-bottom:20px;max-height:520px;object-fit:cover;" alt="${title}"/>`:''}
 ${content}
 </div>`;
-
-  try {
+  try{
     let r;
-    if (editingPostId) {
-      r = await fetch(
-        `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts/${editingPostId}`,
-        { method:'PUT', headers:{'Authorization':'Bearer '+accessToken,'Content-Type':'application/json'},
-          body: JSON.stringify({kind:"blogger#post",id:editingPostId,title,content:html}) }
-      );
-    } else {
-      r = await fetch(
-        `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts/`,
-        { method:'POST', headers:{'Authorization':'Bearer '+accessToken,'Content-Type':'application/json'},
-          body: JSON.stringify({kind:"blogger#post",title,content:html}) }
-      );
+    if(editingPostId){
+      r=await fetch(`https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts/${editingPostId}`,
+        {method:'PUT',headers:{'Authorization':'Bearer '+accessToken,'Content-Type':'application/json'},
+         body:JSON.stringify({kind:"blogger#post",id:editingPostId,title,content:html})});
+    }else{
+      r=await fetch(`https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts/`,
+        {method:'POST',headers:{'Authorization':'Bearer '+accessToken,'Content-Type':'application/json'},
+         body:JSON.stringify({kind:"blogger#post",title,content:html})});
     }
-    if (r.ok) {
-      showToast(editingPostId ? '¡Noticia actualizada!' : '¡Noticia publicada!','success');
-      cancelEdit(); closeEditorPanel(); await loadPosts();
-    } else {
-      showToast('Error al publicar. Verifica tu sesión.','error');
-    }
-  } catch(e) { showToast('Error de conexión','error'); }
-
-  btn.disabled = false;
-  btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span id="btnPublishLabel">' +
-    (editingPostId ? 'Guardar Cambios' : 'Publicar Noticia') + '</span>';
+    if(r.ok){
+      showToast(editingPostId?'¡Noticia actualizada!':'¡Noticia publicada!','success');
+      cancelEdit();closeEditorPanel();await loadPosts();
+    }else{showToast('Error al publicar. Verifica tu sesión.','error');}
+  }catch(e){showToast('Error de conexión','error');}
+  btn.disabled=false;
+  btn.innerHTML='<i class="fas fa-paper-plane"></i> <span id="btnPublishLabel">'+(editingPostId?'Guardar Cambios':'Publicar Noticia')+'</span>';
 }
 
 /* ────────────────────────────────────────────
    SHARE
 ──────────────────────────────────────────── */
-function shareHTML(title, url) {
-  const enc  = encodeURIComponent;
-  const text = enc(title);
-  const link = enc(url);
-  return `
-    <div class="share-row">
-      <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=${link}" target="_blank"><i class="fab fa-facebook-f"></i></a>
-      <button class="share-btn share-wa" onclick="openWhatsApp(event,'${title.replace(/'/g,"\\'")} ${url}')"><i class="fab fa-whatsapp"></i></button>
-      <a class="share-btn share-tw" href="https://twitter.com/intent/tweet?text=${text}&url=${link}" target="_blank"><i class="fab fa-x-twitter"></i></a>
-      <a class="share-btn share-tg" href="https://t.me/share/url?url=${link}&text=${text}" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-      <button class="share-btn share-cp" onclick="copyLink('${url}')"><i class="fas fa-link"></i></button>
-    </div>`;
+function shareHTML(title,url){
+  const enc=encodeURIComponent;
+  const text=enc(title);
+  const link=enc(url);
+  return`<div class="share-row">
+    <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=${link}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <button class="share-btn share-wa" onclick="openWhatsApp(event,'${title.replace(/'/g,"\\'")} ${url}')"><i class="fab fa-whatsapp"></i></button>
+    <a class="share-btn share-tw" href="https://twitter.com/intent/tweet?text=${text}&url=${link}" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <a class="share-btn share-tg" href="https://t.me/share/url?url=${link}&text=${text}" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+    <button class="share-btn share-cp" onclick="copyLink('${url}')"><i class="fas fa-link"></i></button>
+  </div>`;
 }
-
-function copyLink(url) {
-  navigator.clipboard.writeText(url).then(() => showToast('Enlace copiado','success'));
-}
+function copyLink(url){navigator.clipboard.writeText(url).then(()=>showToast('Enlace copiado','success'));}
 
 /* ────────────────────────────────────────────
    MODAL LECTOR
 ──────────────────────────────────────────── */
-function openArticleModal(postId) {
-  const post = allPosts.find(p => p.id === postId);
-  if (!post) return;
-
-  const img  = extractImg(post.content || '');
-  const cat  = extractCat(post.content || '') || (post.labels && post.labels[0]) || 'Noticias';
-  const date = fmtDate(post.published);
-  const url  = post.url || '#';
-
-  const temp = document.createElement('div');
-  temp.innerHTML = post.content || '';
-  const mainImg = temp.querySelector('img.post-main-img');
-  if (mainImg) mainImg.remove();
-  const cleanContent = temp.innerHTML;
-
-  const modalImg = document.getElementById('modalImg');
-  modalImg.src   = img;
-  modalImg.style.display = 'block';
-
-  document.getElementById('modalCat').textContent    = cat;
-  document.getElementById('modalTitle').textContent  = post.title;
-  document.getElementById('modalDate').textContent   = date;
-  document.getElementById('modalContent').innerHTML  = cleanContent;
-  document.getElementById('modalShareRow').innerHTML = shareHTML(post.title, url);
-  document.getElementById('modalExternalLink').href  = url;
-
-  updateOG(post.title, extractText(cleanContent).substring(0,160), img, url);
-
+function openArticleModal(postId){
+  const post=allPosts.find(p=>p.id===postId);
+  if(!post)return;
+  const img=extractImg(post.content||'');
+  const cat=extractCat(post.content||'')||(post.labels&&post.labels[0])||'Noticias';
+  const date=fmtDate(post.published);
+  const url=post.url||'#';
+  const temp=document.createElement('div');
+  temp.innerHTML=post.content||'';
+  const mainImg=temp.querySelector('img.post-main-img');
+  if(mainImg)mainImg.remove();
+  const cleanContent=temp.innerHTML;
+  const modalImg=document.getElementById('modalImg');
+  modalImg.src=img;modalImg.style.display='block';
+  document.getElementById('modalCat').textContent=cat;
+  document.getElementById('modalTitle').textContent=post.title;
+  document.getElementById('modalDate').textContent=date;
+  document.getElementById('modalContent').innerHTML=cleanContent;
+  document.getElementById('modalShareRow').innerHTML=shareHTML(post.title,url);
+  document.getElementById('modalExternalLink').href=url;
+  updateOG(post.title,extractText(cleanContent).substring(0,160),img,url);
   document.getElementById('articleModal').classList.add('show');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
-
-function closeArticleModal() {
-  document.getElementById('articleModal').classList.remove('show');
-  document.body.style.overflow = '';
-}
-function closeModalOnBg(e) {
-  if (e.target === document.getElementById('articleModal')) closeArticleModal();
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeArticleModal(); });
+function closeArticleModal(){document.getElementById('articleModal').classList.remove('show');document.body.style.overflow='';}
+function closeModalOnBg(e){if(e.target===document.getElementById('articleModal'))closeArticleModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeArticleModal();});
 
 /* ────────────────────────────────────────────
    RENDER FEATURED
 ──────────────────────────────────────────── */
-function renderFeatured(post) {
-  const img  = extractImg(post.content || '');
-  const txt  = extractText(post.content || '').substring(0,280);
-  const date = fmtDate(post.published);
-  const url  = post.url || '#';
-  const cat  = extractCat(post.content || '') || (post.labels && post.labels[0]) || 'Destacado';
-
-  document.getElementById('destacada-section').style.display = 'block';
-  document.getElementById('featured-wrap').innerHTML = `
+function renderFeatured(post){
+  const img=extractImg(post.content||'');
+  const txt=extractText(post.content||'').substring(0,280);
+  const date=fmtDate(post.published);
+  const url=post.url||'#';
+  const cat=extractCat(post.content||'')||(post.labels&&post.labels[0])||'Destacado';
+  document.getElementById('destacada-section').style.display='block';
+  document.getElementById('featured-wrap').innerHTML=`
     <div class="featured-card">
       <div class="featured-img">
         <img src="${img}" alt="${post.title}" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1200'">
         <div class="featured-tag">${cat}</div>
       </div>
       <div class="featured-body">
-        <div class="featured-meta">
-          <span><i class="fas fa-calendar-alt"></i> ${date}</span>
-          <span>·</span>
-          <span><i class="fas fa-star" style="color:var(--rojo);"></i> Destacada</span>
-        </div>
+        <div class="featured-meta"><span><i class="fas fa-calendar-alt"></i> ${date}</span><span>·</span><span><i class="fas fa-star" style="color:var(--rojo);"></i> Destacada</span></div>
         <h2>${post.title}</h2>
-        <p>${txt}${txt.length >= 280 ? '…' : ''}</p>
+        <p>${txt}${txt.length>=280?'…':''}</p>
         <div class="featured-actions">
-          <button class="btn-read" onclick="openArticleModal('${post.id}')">
-            <i class="fas fa-book-open"></i> Leer completo
-          </button>
-          ${shareHTML(post.title, url)}
+          <button class="btn-read" onclick="openArticleModal('${post.id}')"><i class="fas fa-book-open"></i> Leer completo</button>
+          ${shareHTML(post.title,url)}
         </div>
       </div>
     </div>`;
-
-  updateOG(post.title, txt.substring(0,160), img, url);
+  updateOG(post.title,txt.substring(0,160),img,url);
 }
 
 /* ────────────────────────────────────────────
    RENDER GRID
 ──────────────────────────────────────────── */
-function renderGrid(posts) {
-  const container = document.getElementById('newsContainer');
-  if (!posts.length) {
-    container.innerHTML = `<div class="empty-state"><i class="fas fa-newspaper"></i><p>Aún no hay noticias publicadas.<br>¡Sé la primera en agregar una!</p></div>`;
+function renderGrid(posts){
+  const container=document.getElementById('newsContainer');
+  if(!posts.length){
+    container.innerHTML=`<div class="empty-state"><i class="fas fa-newspaper"></i><p>Aún no hay noticias publicadas.<br>¡Sé la primera en agregar una!</p></div>`;
     return;
   }
-  container.innerHTML = posts.map(post => {
-    const img  = extractImg(post.content || '');
-    const txt  = extractText(post.content || '').substring(0,150);
-    const date = fmtDate(post.published);
-    const cat  = extractCat(post.content || '') || (post.labels && post.labels[0]) || 'Noticias';
-    return `
-      <div class="news-card">
-        <div class="card-img-wrap">
-          <img src="${img}" alt="${post.title}" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800'">
-          <div class="card-cat">${cat}</div>
+  container.innerHTML=posts.map(post=>{
+    const img=extractImg(post.content||'');
+    const txt=extractText(post.content||'').substring(0,150);
+    const date=fmtDate(post.published);
+    const cat=extractCat(post.content||'')||(post.labels&&post.labels[0])||'Noticias';
+    return`<div class="news-card">
+      <div class="card-img-wrap">
+        <img src="${img}" alt="${post.title}" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800'">
+        <div class="card-cat">${cat}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta"><i class="fas fa-clock"></i> ${date}</div>
+        <h3>${post.title}</h3>
+        <p>${txt}${txt.length>=150?'…':''}</p>
+        <div class="card-footer">
+          <button class="btn-read" onclick="openArticleModal('${post.id}')" style="font-size:13px;padding:8px 16px;"><i class="fas fa-book-open"></i> Leer</button>
+          ${shareHTML(post.title,post.url||'#')}
         </div>
-        <div class="card-body">
-          <div class="card-meta"><i class="fas fa-clock"></i> ${date}</div>
-          <h3>${post.title}</h3>
-          <p>${txt}${txt.length >= 150 ? '…' : ''}</p>
-          <div class="card-footer">
-            <button class="btn-read" onclick="openArticleModal('${post.id}')" style="font-size:13px;padding:8px 16px;">
-              <i class="fas fa-book-open"></i> Leer
-            </button>
-            ${shareHTML(post.title, post.url || '#')}
-          </div>
-        </div>
-      </div>`;
+      </div>
+    </div>`;
   }).join('');
 }
 
 /* ────────────────────────────────────────────
-   CARGAR POSTS DESDE BLOGGER
-   — siempre ordenados por fecha descendente
+   CARGAR POSTS
 ──────────────────────────────────────────── */
-async function loadPosts() {
-  try {
-    const r = await fetch(
-      `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts?key=${API_KEY}&maxResults=50&orderBy=published`
-    );
-    const data = await r.json();
-
-    document.getElementById('loadingGrid').style.display   = 'none';
-    document.getElementById('newsContainer').style.display = 'grid';
-
-    if (!data.items || !data.items.length) {
-      allPosts = [];
-      renderGrid([]);
-      document.getElementById('destacada-section').style.display = 'none';
-      return;
-    }
-
-    // Ordenar siempre de más reciente a más antiguo
-    allPosts = [...data.items].sort((a,b) => new Date(b.published) - new Date(a.published));
-    const [featured, ...rest] = allPosts;
-    renderFeatured(featured);   // La más reciente = destacada
-    renderGrid(rest);           // El resto en la grilla
-
-  } catch(e) {
-    document.getElementById('loadingGrid').style.display   = 'none';
-    document.getElementById('newsContainer').style.display = 'grid';
-    document.getElementById('newsContainer').innerHTML = `
-      <div class="empty-state">
-        <i class="fas fa-wifi" style="color:var(--rojo);"></i>
-        <p>No se pudo cargar las noticias.<br>Verifica tu conexión e intenta de nuevo.</p>
-      </div>`;
+async function loadPosts(){
+  try{
+    const r=await fetch(`https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts?key=${API_KEY}&maxResults=50&orderBy=published`);
+    const data=await r.json();
+    document.getElementById('loadingGrid').style.display='none';
+    document.getElementById('newsContainer').style.display='grid';
+    if(!data.items||!data.items.length){allPosts=[];renderGrid([]);document.getElementById('destacada-section').style.display='none';return;}
+    allPosts=[...data.items].sort((a,b)=>new Date(b.published)-new Date(a.published));
+    const[featured,...rest]=allPosts;
+    renderFeatured(featured);
+    renderGrid(rest);
+  }catch(e){
+    document.getElementById('loadingGrid').style.display='none';
+    document.getElementById('newsContainer').style.display='grid';
+    document.getElementById('newsContainer').innerHTML=`<div class="empty-state"><i class="fas fa-wifi" style="color:var(--rojo);"></i><p>No se pudo cargar las noticias.<br>Verifica tu conexión e intenta de nuevo.</p></div>`;
   }
 }
+
+/* ══════════════════════════════════════════════════════
+   EDITOR VISUAL COMPLETO
+══════════════════════════════════════════════════════ */
+
+/* ─── Abrir / Cerrar editor visual ─── */
+function veOpen(){
+  document.getElementById('veBar').classList.add('show');
+  // Empujar el body para que no quede tapado por la barra
+  document.querySelector('header').style.top='52px';
+  showToast('Editor Visual activado — haz clic en "Editar Elementos" para tocar la web','info');
+}
+function veClose(){
+  document.getElementById('veBar').classList.remove('show');
+  document.querySelector('header').style.top='0';
+  veDeactivateEditMode();
+  veCloseProps();
+}
+
+/* ─── Aplicar color a variable CSS ─── */
+function veApplyColor(varName,value){
+  document.documentElement.style.setProperty('--'+varName,value);
+  // Sincronizar rojo-dark cuando cambia rojo
+  if(varName==='rojo'){
+    // Oscurecer el color un 20%
+    const dark=shadeColor(value,-20);
+    document.documentElement.style.setProperty('--rojo-dark',dark);
+  }
+}
+function shadeColor(hex,percent){
+  const num=parseInt(hex.replace('#',''),16);
+  const amt=Math.round(2.55*percent);
+  const R=(num>>16)+amt,G=(num>>8&0x00FF)+amt,B=(num&0x0000FF)+amt;
+  return'#'+(0x1000000+(Math.max(0,Math.min(255,R))*0x10000)+(Math.max(0,Math.min(255,G))*0x100)+Math.max(0,Math.min(255,B))).toString(16).slice(1);
+}
+
+/* ─── Aplicar fuente global ─── */
+function veApplyFont(fontStack){
+  document.body.style.fontFamily=fontStack;
+}
+
+/* ─── Cambiar imagen del hero ─── */
+function veChangeHeroImg(){
+  document.getElementById('veImgBackdrop').classList.add('show');
+  document.getElementById('veImgPanel').classList.add('show');
+}
+function veCloseImgPanel(){
+  document.getElementById('veImgBackdrop').classList.remove('show');
+  document.getElementById('veImgPanel').classList.remove('show');
+}
+function veImgTabSwitch(tab,btn){
+  document.querySelectorAll('#veImgPanel .inline-img-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('veImgTabUrl').style.display=tab==='url'?'block':'none';
+  document.getElementById('veImgTabSearch').style.display=tab==='search'?'block':'none';
+  document.getElementById('veImgTabUpload').style.display=tab==='upload'?'block':'none';
+}
+function veApplyHeroImgUrl(){
+  const url=document.getElementById('veHeroImgUrl').value.trim();
+  if(!url)return;
+  document.getElementById('heroBgImg').src=url;
+  veCloseImgPanel();
+  showToast('Imagen del hero actualizada','success');
+}
+async function veUnsplashSearch(){
+  const q=document.getElementById('veUnsplashQ').value.trim();
+  if(!q)return;
+  const grid=document.getElementById('veUnsplashGrid');
+  grid.innerHTML='<div class="unsplash-loading"><i class="fas fa-spinner fa-spin"></i> Buscando...</div>';
+  try{
+    const r=await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(q)}&per_page=12&client_id=${UNSPLASH_ACCESS_KEY}`);
+    const data=await r.json();
+    if(!data.results||!data.results.length){grid.innerHTML='<div class="unsplash-loading">Sin resultados</div>';return;}
+    grid.innerHTML=data.results.map(p=>`<img src="${p.urls.small}" data-full="${p.urls.regular}" onclick="veSelectUnsplashHero(this)" alt=""/>`).join('');
+  }catch(e){grid.innerHTML='<div class="unsplash-loading">Error</div>';}
+}
+function veSelectUnsplashHero(img){
+  const url=img.getAttribute('data-full');
+  document.getElementById('heroBgImg').src=url;
+  veCloseImgPanel();
+  showToast('Imagen del hero actualizada','success');
+}
+function veHandleHeroFile(input){
+  const file=input.files[0];
+  if(!file)return;
+  compressImage(file,1920,1080,0.88,dataUrl=>{
+    document.getElementById('heroBgImg').src=dataUrl;
+    veCloseImgPanel();
+    showToast('Imagen comprimida y aplicada','success');
+  });
+}
+
+/* ─── Modo editar elementos ─── */
+function veToggleEditMode(){
+  veEditModeActive=!veEditModeActive;
+  const btn=document.getElementById('btnVeEditMode');
+  if(veEditModeActive){
+    document.body.classList.add('ve-mode');
+    btn.style.background='var(--rojo)';
+    btn.style.color='#fff';
+    btn.innerHTML='<i class="fas fa-mouse-pointer"></i> Salir de Edición';
+    showToast('Haz clic en cualquier elemento para editarlo','info');
+    attachVeListeners();
+  }else{
+    veDeactivateEditMode();
+    btn.style.background='';
+    btn.style.color='';
+    btn.innerHTML='<i class="fas fa-mouse-pointer"></i> Editar Elementos';
+  }
+}
+function veDeactivateEditMode(){
+  veEditModeActive=false;
+  document.body.classList.remove('ve-mode');
+  document.querySelectorAll('[data-ve].ve-selected').forEach(el=>el.classList.remove('ve-selected'));
+  veCloseProps();
+  const btn=document.getElementById('btnVeEditMode');
+  if(btn){btn.style.background='';btn.style.color='';btn.innerHTML='<i class="fas fa-mouse-pointer"></i> Editar Elementos';}
+}
+
+function attachVeListeners(){
+  document.querySelectorAll('[data-ve]').forEach(el=>{
+    el.removeEventListener('click',veElClick);
+    el.addEventListener('click',veElClick);
+  });
+}
+
+function veElClick(e){
+  if(!veEditModeActive)return;
+  e.preventDefault();e.stopPropagation();
+  // Quitar selección anterior
+  document.querySelectorAll('[data-ve].ve-selected').forEach(el=>el.classList.remove('ve-selected'));
+  this.classList.add('ve-selected');
+  veSelectedEl=this;
+  veShowProps(this,e.clientX,e.clientY);
+}
+
+function veShowProps(el,x,y){
+  const panel=document.getElementById('vePropsPanel');
+  // Rellenar campos con valores actuales
+  const cs=window.getComputedStyle(el);
+  document.getElementById('vePropTitle').textContent=(el.getAttribute('data-ve')||'Elemento').replace(/-/g,' ');
+
+  // Texto: solo si no tiene hijos complejos
+  const hasChildren=el.children.length>0&&el.tagName!=='SPAN';
+  const txtWrap=document.getElementById('vePropTextWrap');
+  if(hasChildren&&!['SPAN','A'].includes(el.tagName)){
+    txtWrap.style.display='none';
+  }else{
+    txtWrap.style.display='block';
+    document.getElementById('vePropText').value=el.innerText||el.textContent||'';
+  }
+
+  // Color texto
+  document.getElementById('vePropColor').value=rgbToHex(cs.color)||'#e8edf5';
+  // Tamaño fuente
+  document.getElementById('vePropSize').value=parseInt(cs.fontSize)||'';
+  // Peso fuente
+  document.getElementById('vePropWeight').value='';
+  // Fondo
+  const bg=cs.backgroundColor;
+  document.getElementById('vePropBg').value=bg&&bg!=='rgba(0, 0, 0, 0)'?rgbToHex(bg):'#101f38';
+  // Padding
+  document.getElementById('vePropPadT').value=parseInt(cs.paddingTop)||'';
+  document.getElementById('vePropPadH').value=parseInt(cs.paddingLeft)||'';
+  document.getElementById('vePropPadB').value=parseInt(cs.paddingBottom)||'';
+  // Radius
+  document.getElementById('vePropRadius').value=parseInt(cs.borderRadius)||'';
+
+  // Guardar estilo original si no estaba guardado
+  if(!veOrigStyles.has(el))veOrigStyles.set(el,el.getAttribute('style')||'');
+
+  // Posicionar panel cerca del clic, evitando salir de pantalla
+  panel.style.display='block';
+  const pw=panel.offsetWidth||260,ph=panel.offsetHeight||400;
+  let px=x+12,py=y+12;
+  if(px+pw>window.innerWidth-10)px=window.innerWidth-pw-10;
+  if(py+ph>window.innerHeight-10)py=window.innerHeight-ph-10;
+  panel.style.left=px+'px';panel.style.top=py+'px';
+  panel.classList.add('show');
+}
+
+function veCloseProps(){
+  document.getElementById('vePropsPanel').classList.remove('show');
+  if(veSelectedEl)veSelectedEl.classList.remove('ve-selected');
+  veSelectedEl=null;
+}
+
+function veApplyProps(){
+  if(!veSelectedEl)return;
+  const el=veSelectedEl;
+  const txt=document.getElementById('vePropText').value;
+  const color=document.getElementById('vePropColor').value;
+  const size=document.getElementById('vePropSize').value;
+  const weight=document.getElementById('vePropWeight').value;
+  const bg=document.getElementById('vePropBg').value;
+  const padT=document.getElementById('vePropPadT').value;
+  const padH=document.getElementById('vePropPadH').value;
+  const padB=document.getElementById('vePropPadB').value;
+  const radius=document.getElementById('vePropRadius').value;
+
+  // Aplicar texto (solo si el campo es visible y tiene valor)
+  const txtWrap=document.getElementById('vePropTextWrap');
+  if(txtWrap.style.display!=='none'&&txt){
+    // Si tiene hijos con tags, no pisar. Si es texto simple, sí.
+    if(el.children.length===0||['SPAN','A'].includes(el.tagName)){
+      el.textContent=txt;
+    }
+  }
+
+  if(color)el.style.color=color;
+  if(size)el.style.fontSize=size+'px';
+  if(weight)el.style.fontWeight=weight;
+  if(bg)el.style.backgroundColor=bg;
+  if(padT!==''||padH!==''||padB!==''){
+    el.style.paddingTop=(padT||0)+'px';
+    el.style.paddingLeft=(padH||0)+'px';
+    el.style.paddingRight=(padH||0)+'px';
+    el.style.paddingBottom=(padB||0)+'px';
+  }
+  if(radius!=='')el.style.borderRadius=radius+'px';
+
+  showToast('Cambios aplicados','success');
+}
+
+function veResetEl(){
+  if(!veSelectedEl)return;
+  const orig=veOrigStyles.get(veSelectedEl);
+  veSelectedEl.setAttribute('style',orig||'');
+  showToast('Elemento restaurado','info');
+  veCloseProps();
+}
+
+/* ─── Utilidad: rgb(a,b,c) → #rrggbb ─── */
+function rgbToHex(rgb){
+  if(!rgb||rgb==='transparent')return'';
+  const m=rgb.match(/\d+/g);
+  if(!m||m.length<3)return'';
+  return'#'+m.slice(0,3).map(n=>(+n).toString(16).padStart(2,'0')).join('');
+}
+
+/* ────────────────────────────────────────────
+   EXPORTAR HTML — Descarga el HTML actual
+   con TODOS los cambios del editor visual
+   preservando funciones intactas.
+──────────────────────────────────────────── */
+function veExportHTML(){
+  // Capturar estilos CSS custom properties actuales
+  const cs=document.documentElement.style;
+  const rojo     =cs.getPropertyValue('--rojo').trim()    ||'#e8001c';
+  const rojoDark =cs.getPropertyValue('--rojo-dark').trim()||'#b0001a';
+  const negro    =cs.getPropertyValue('--negro').trim()   ||'#07101d';
+  const azulCard =cs.getPropertyValue('--azul-card').trim()||'#101f38';
+  const texto    =cs.getPropertyValue('--texto').trim()   ||'#e8edf5';
+
+  // Clonar el documento actual
+  const clone=document.documentElement.cloneNode(true);
+
+  // 1. Eliminar la barra del editor visual, el panel de propiedades,
+  //    y los paneles modales de búsqueda de imagen del editor visual
+  //    (no son parte de la web pública)
+  const removeIds=['veBar','vePropsPanel','veImgBackdrop','veImgPanel','inlineImgBackdrop','inlineImgPanel'];
+  removeIds.forEach(id=>{const el=clone.querySelector('#'+id);if(el)el.remove();});
+
+  // 2. Quitar atributos ve-mode del body
+  clone.querySelector('body').classList.remove('ve-mode');
+
+  // 3. Restaurar posición del header (el editor la mueve)
+  const hdr=clone.querySelector('header');
+  if(hdr)hdr.style.top='';
+
+  // 4. Quitar clases ve-selected de elementos
+  clone.querySelectorAll('.ve-selected').forEach(el=>el.classList.remove('ve-selected'));
+
+  // 5. Inyectar los colores actuales en el :root del CSS
+  //    Buscamos el bloque :root en el primer <style> y lo reemplazamos
+  const styles=clone.querySelectorAll('style');
+  styles.forEach(style=>{
+    if(style.textContent.includes('--rojo:')){
+      style.textContent=style.textContent
+        .replace(/--rojo\s*:[^;]+;/,`--rojo:${rojo};`)
+        .replace(/--rojo-dark\s*:[^;]+;/,`--rojo-dark:${rojoDark};`)
+        .replace(/--negro\s*:[^;]+;/,`--negro:${negro};`)
+        .replace(/--azul-card\s*:[^;]+;/,`--azul-card:${azulCard};`)
+        .replace(/--texto\s*:[^;]+;/,`--texto:${texto};`);
+    }
+  });
+
+  // 6. Aplicar la fuente global si fue cambiada
+  const bodyFont=document.body.style.fontFamily;
+  if(bodyFont){
+    const cloneBody=clone.querySelector('body');
+    cloneBody.style.fontFamily=bodyFont;
+  }
+
+  // 7. Aplicar imagen del hero si fue cambiada
+  const heroSrc=document.getElementById('heroBgImg').src;
+  const cloneHeroImg=clone.querySelector('#heroBgImg');
+  if(cloneHeroImg)cloneHeroImg.src=heroSrc;
+
+  // 8. Aplicar los cambios de estilo inline de cada [data-ve] editado
+  document.querySelectorAll('[data-ve]').forEach(el=>{
+    const veId=el.getAttribute('data-ve');
+    const style=el.getAttribute('style');
+    if(style){
+      const cloneEl=clone.querySelector(`[data-ve="${veId}"]`);
+      if(cloneEl)cloneEl.setAttribute('style',style);
+    }
+    // Texto editado
+    if(el.getAttribute('data-ve-text')){
+      const cloneEl=clone.querySelector(`[data-ve="${veId}"]`);
+      if(cloneEl)cloneEl.textContent=el.textContent;
+    }
+  });
+
+  // 9. Quitar el botón "Editar Web" del admin bar (no parte de la web pública)
+  const editWebBtn=clone.querySelector('.btn-new-post[onclick="veOpen()"]');
+  if(editWebBtn)editWebBtn.remove();
+
+  // 10. Serializar y descargar
+  const htmlStr='<!doctype html>\n'+clone.outerHTML;
+  const blob=new Blob([htmlStr],{type:'text/html;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='informate_con_la_dama_editado.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+  showToast('¡HTML exportado! Pégalo en tu Blogger','success');
+}
+
+/* Cerrar panel de props si clic fuera */
+document.addEventListener('click',e=>{
+  if(!veEditModeActive)return;
+  const panel=document.getElementById('vePropsPanel');
+  if(panel.classList.contains('show')&&!panel.contains(e.target)&&!e.target.closest('[data-ve]')){
+    veCloseProps();
+  }
+});
 
 loadPosts();
 </script>
