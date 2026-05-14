@@ -381,7 +381,24 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
 .ve-prop-inline label{margin-bottom:0;flex-shrink:0;}
 .btn-apply-text{width:100%;padding:8px;background:var(--rojo);color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:4px;}
 
-/* ─── RESPONSIVE MÓVIL — FIX HERO ─── */
+/* ─── NOTICIAS EXTRA (acordeón "Ver más") ─── */
+.news-extra-wrap{margin-top:20px;}
+.btn-ver-mas{width:100%;padding:14px;background:rgba(232,0,28,.1);border:1px solid rgba(232,0,28,.3);color:var(--rojo);border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .3s;letter-spacing:.5px;}
+.btn-ver-mas:hover{background:rgba(232,0,28,.18);border-color:var(--rojo);}
+.btn-ver-mas i{transition:transform .3s;}
+.btn-ver-mas.open i.fa-chevron-down{transform:rotate(180deg);}
+/* Mini-lista de noticias extra */
+.news-mini-list{display:none;margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;}
+.news-mini-list.collapsed{display:none!important;}
+.news-mini-card{background:var(--azul-card);border:1px solid var(--borde);border-radius:10px;overflow:hidden;display:flex;align-items:center;gap:0;cursor:pointer;transition:all .25s;}
+.news-mini-card:hover{border-color:rgba(232,0,28,.4);transform:translateY(-2px);}
+.news-mini-thumb{width:72px;height:72px;object-fit:cover;flex-shrink:0;}
+.news-mini-info{padding:8px 12px;flex:1;overflow:hidden;}
+.news-mini-cat{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--rojo);margin-bottom:3px;}
+.news-mini-title{font-size:12px;font-weight:600;color:#fff;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.news-mini-date{font-size:10px;color:var(--texto-suave);margin-top:4px;}
+
+/* ─── RESPONSIVE TABLET ─── */
 @media(max-width:960px){
   .featured-card{grid-template-columns:1fr;}
   .featured-img{min-height:260px;}
@@ -392,37 +409,69 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
   .player-viz{display:none;}
 }
 
+/* ─── RESPONSIVE MÓVIL ─── */
 @media(max-width:660px){
   header{padding:0 14px;}
   .logo-text span:first-child{font-size:13px;}
   .nav-link{display:none;}
-  .section{padding:60px 5%;}
+  .section{padding:44px 5%;}
   .divider{margin:0 5%;}
-  footer{padding:32px 5% 85px;}
-  .admin-bar{padding:10px 14px;}
+  footer{padding:28px 5% 85px;}
+  .admin-bar{padding:8px 10px;flex-wrap:wrap;height:auto;}
+  .admin-info{font-size:11px;}
+  .btn-new-post{font-size:11px;padding:6px 10px;}
   .player{padding:0 12px;gap:8px;}
   .vol-wrap{display:none;}
   .player-scroll-wrap{width:90px;}
 
-  /* ── FIX PRINCIPAL MÓVIL: elimina espacio negro ── */
+  /* ── HERO MÓVIL — fix real del espacio vacío ──
+     La imagen tiene la persona a la derecha-centro.
+     Usamos un alto compacto y object-position preciso. */
   .hero{
-    min-height:100svh;   /* usa svh para excluir barras del navegador */
-    padding:80px 5% 40px;
-    align-items:flex-end; /* texto abajo, persona arriba */
+    min-height:65vh;          /* Altura compacta: no 100vh, solo lo necesario */
+    max-height:75vh;
+    padding:100px 5% 32px;    /* padding-top alto para dejar espacio al header */
+    align-items:flex-end;      /* texto al fondo */
   }
   .hero-bg img{
-    object-position:70% top;  /* 70% muestra a la persona (lado derecho) */
-    animation:heroPanMobile 22s ease-in-out infinite alternate;
+    /* 65% horizontal lleva al centro-derecha donde está la persona */
+    object-position:65% 25%;
+    animation:heroPanMobile 20s ease-in-out infinite alternate;
   }
-  /* En móvil: la persona siempre aparece en cuadro, pan sutil de derecha a izquierda */
   @keyframes heroPanMobile{
-    0%  {transform:scale(1.06) translateX(0%);}
-    50% {transform:scale(1.1)  translateX(-5%);}
-    100%{transform:scale(1.07) translateX(-3%);}
+    0%  {transform:scale(1.05) translateX(0%);}
+    50% {transform:scale(1.08) translateX(-3%);}
+    100%{transform:scale(1.06) translateX(-1%);}
   }
-  .hero::after{height:200px;} /* más gradiente abajo para no cortar */
+  /* Gradiente: más oscuro abajo para legibilidad del texto */
+  .hero-bg::after{background:linear-gradient(to bottom,rgba(7,16,29,.25) 0%,rgba(7,16,29,.55) 50%,rgba(7,16,29,.95) 100%);}
+  .hero::after{height:80px;}
   .hero-inner{max-width:100%;}
-  .hero h1{font-size:clamp(30px,7vw,48px);}
+  .hero h1{font-size:clamp(28px,6.5vw,42px);}
+  .hero p{font-size:14px;}
+  .hero-badge{font-size:10px;padding:4px 10px;}
+
+  /* Hero: sliders de posición imagen (solo en editor visual) */
+  .ve-hero-pos-controls{display:flex!important;}
+
+  /* Noticias en móvil: 1 columna */
+  .news-grid{grid-template-columns:1fr;}
+  .news-mini-list{grid-template-columns:1fr;}
+
+  /* Section header más compacto */
+  .section-header{margin-bottom:24px;}
+  .section-title{font-size:22px;}
+
+  /* Featured en móvil */
+  .featured-body{padding:20px;}
+  .featured-body h2{font-size:18px;}
+  .featured-body p{font-size:13px;}
+  .featured-img{min-height:200px;}
+
+  /* Modal compacto en móvil */
+  .modal-body{padding:18px;}
+  .modal-title{font-size:20px;}
+  .modal-content{font-size:14px;}
 }
 </style>
 </head>
@@ -477,6 +526,24 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
   <!-- Imagen hero -->
   <div class="ve-group">
     <button class="ve-btn ve-btn-gray" onclick="veChangeHeroImg()"><i class="fas fa-image"></i> Imagen Hero</button>
+  </div>
+
+  <!-- Posición imagen hero X -->
+  <div class="ve-group" style="flex-direction:column;gap:2px;">
+    <span class="ve-label">Pos. X img</span>
+    <input type="range" id="veHeroPosX" min="0" max="100" value="65" style="width:80px;height:4px;accent-color:var(--rojo);" oninput="veHeroPos()" title="Posición horizontal"/>
+  </div>
+
+  <!-- Posición imagen hero Y -->
+  <div class="ve-group" style="flex-direction:column;gap:2px;">
+    <span class="ve-label">Pos. Y img</span>
+    <input type="range" id="veHeroPosY" min="0" max="100" value="25" style="width:80px;height:4px;accent-color:var(--rojo);" oninput="veHeroPos()" title="Posición vertical"/>
+  </div>
+
+  <!-- Alto hero -->
+  <div class="ve-group" style="flex-direction:column;gap:2px;">
+    <span class="ve-label">Alto hero</span>
+    <input type="range" id="veHeroHeight" min="40" max="100" value="65" style="width:80px;height:4px;accent-color:var(--rojo);" oninput="veApplyHeroHeight()" title="Altura del hero en vh"/>
   </div>
 
   <!-- Modo editar textos -->
@@ -1497,7 +1564,7 @@ function renderFeatured(post){
 }
 
 /* ────────────────────────────────────────────
-   RENDER GRID
+   RENDER GRID — 5 principales + acordeón mini
 ──────────────────────────────────────────── */
 function renderGrid(posts){
   const container=document.getElementById('newsContainer');
@@ -1505,7 +1572,13 @@ function renderGrid(posts){
     container.innerHTML=`<div class="empty-state"><i class="fas fa-newspaper"></i><p>Aún no hay noticias publicadas.<br>¡Sé la primera en agregar una!</p></div>`;
     return;
   }
-  container.innerHTML=posts.map(post=>{
+
+  // Primeras 5 noticias — cards completas
+  const main=posts.slice(0,5);
+  // El resto — mini acordeón
+  const extra=posts.slice(5);
+
+  const mainHTML=main.map(post=>{
     const img=extractImg(post.content||'');
     const txt=extractText(post.content||'').substring(0,150);
     const date=fmtDate(post.published);
@@ -1526,6 +1599,38 @@ function renderGrid(posts){
       </div>
     </div>`;
   }).join('');
+
+  // Mini-cards para el resto
+  let extraHTML='';
+  if(extra.length>0){
+    const miniCards=extra.map(post=>{
+      const img=extractImg(post.content||'');
+      const cat=extractCat(post.content||'')||(post.labels&&post.labels[0])||'Noticias';
+      const date=fmtDate(post.published);
+      return`<div class="news-mini-card" onclick="openArticleModal('${post.id}')">
+        <img class="news-mini-thumb" src="${img}" alt="${post.title}" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=200'"/>
+        <div class="news-mini-info">
+          <div class="news-mini-cat">${cat}</div>
+          <div class="news-mini-title">${post.title}</div>
+          <div class="news-mini-date"><i class="fas fa-clock"></i> ${date}</div>
+        </div>
+      </div>`;
+    }).join('');
+
+    extraHTML=`<div class="news-extra-wrap">
+      <button class="btn-ver-mas" id="btnVerMas" onclick="toggleExtraNoticias()">
+        <i class="fas fa-chevron-down"></i>
+        Ver ${extra.length} noticias más
+      </button>
+      <div class="news-mini-list collapsed" id="extraNoticiasList">
+        ${miniCards}
+      </div>
+    </div>`;
+  }
+
+  container.innerHTML=`<div class="news-grid" style="grid-column:1/-1">${mainHTML}</div>${extraHTML}`;
+  // Resetear el grid container para que no sea grid en sí (el interno ya lo es)
+  container.style.display='block';
 }
 
 /* ────────────────────────────────────────────
@@ -1553,7 +1658,18 @@ async function loadPosts(){
    EDITOR VISUAL COMPLETO
 ══════════════════════════════════════════════════════ */
 
-/* ─── Abrir / Cerrar editor visual ─── */
+/* ─── Posición imagen hero (sliders) ─── */
+function veHeroPos(){
+  const x=document.getElementById('veHeroPosX').value;
+  const y=document.getElementById('veHeroPosY').value;
+  document.getElementById('heroBgImg').style.objectPosition=`${x}% ${y}%`;
+}
+function veApplyHeroHeight(){
+  const h=document.getElementById('veHeroHeight').value;
+  const hero=document.querySelector('.hero');
+  hero.style.minHeight=h+'vh';
+  hero.style.maxHeight=(parseInt(h)+15)+'vh';
+}
 function veOpen(){
   document.getElementById('veBar').classList.add('show');
   // Empujar el body para que no quede tapado por la barra
@@ -1887,6 +2003,26 @@ document.addEventListener('click',e=>{
     veCloseProps();
   }
 });
+
+/* ─── Acordeón "Ver más noticias" ─── */
+function toggleExtraNoticias(){
+  const list=document.getElementById('extraNoticiasList');
+  const btn=document.getElementById('btnVerMas');
+  if(!list||!btn)return;
+  const isCollapsed=list.classList.contains('collapsed');
+  if(isCollapsed){
+    list.classList.remove('collapsed');
+    list.style.display='grid';
+    btn.classList.add('open');
+    btn.innerHTML=`<i class="fas fa-chevron-down"></i> Ocultar noticias adicionales`;
+  }else{
+    list.classList.add('collapsed');
+    list.style.display='none';
+    btn.classList.remove('open');
+    const n=list.querySelectorAll('.news-mini-card').length;
+    btn.innerHTML=`<i class="fas fa-chevron-down"></i> Ver ${n} noticias más`;
+  }
+}
 
 loadPosts();
 </script>
