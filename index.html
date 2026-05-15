@@ -364,22 +364,82 @@ body.ve-mode [data-ve]{outline:2px dashed transparent;outline-offset:3px;cursor:
 body.ve-mode [data-ve]:hover{outline-color:rgba(232,0,28,.6);}
 body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
 
-/* Panel flotante de propiedades */
-.ve-props-panel{position:fixed;background:var(--azul-panel);border:1px solid var(--borde);border-radius:14px;padding:16px;width:260px;z-index:99991;display:none;box-shadow:0 20px 60px rgba(0,0,0,.5);}
-.ve-props-panel.show{display:block;}
-.ve-props-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.ve-props-header span{font-size:12px;font-weight:700;color:var(--rojo);text-transform:uppercase;letter-spacing:.5px;}
-.ve-props-close{background:none;border:none;color:var(--texto-suave);font-size:14px;cursor:pointer;}
-.ve-prop{margin-bottom:10px;}
-.ve-prop label{display:block;font-size:10px;color:var(--texto-suave);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
-.ve-prop input[type=text],.ve-prop input[type=number],.ve-prop select{width:100%;padding:7px 9px;background:rgba(255,255,255,.07);border:1px solid var(--borde);color:#fff;border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;}
-.ve-prop input[type=text]:focus,.ve-prop input[type=number]:focus{border-color:var(--rojo);}
-.ve-prop-row{display:flex;gap:6px;}
-.ve-prop-row input,.ve-prop-row select{flex:1;}
-.ve-prop input[type=color]{width:36px;height:30px;border-radius:6px;border:1px solid var(--borde);cursor:pointer;padding:2px;}
-.ve-prop-inline{display:flex;align-items:center;gap:8px;}
-.ve-prop-inline label{margin-bottom:0;flex-shrink:0;}
-.btn-apply-text{width:100%;padding:8px;background:var(--rojo);color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:4px;}
+/* ─── TOOLBAR FLOTANTE COMPACTA (reemplaza panel pesado) ─── */
+/* Aparece justo sobre el elemento, se cierra con X o clic fuera */
+.ve-toolbar{
+  position:fixed;
+  background:rgba(7,16,29,.97);
+  border:1px solid var(--borde);
+  border-radius:10px;
+  padding:6px 8px;
+  display:none;
+  align-items:center;
+  gap:4px;
+  z-index:99992;
+  box-shadow:0 8px 32px rgba(0,0,0,.6);
+  flex-wrap:wrap;
+  max-width:360px;
+  backdrop-filter:blur(12px);
+}
+.ve-toolbar.show{display:flex;}
+/* Flecha indicadora hacia el elemento */
+.ve-toolbar::after{
+  content:'';position:absolute;bottom:-7px;left:20px;
+  border:7px solid transparent;border-top-color:var(--borde);
+  border-bottom:none;
+}
+/* Sección del texto editable inline */
+.ve-tb-text{
+  width:100%;display:flex;align-items:center;gap:4px;
+  border-bottom:1px solid var(--borde);padding-bottom:5px;margin-bottom:2px;
+}
+.ve-tb-text input{
+  flex:1;padding:5px 8px;background:rgba(255,255,255,.08);
+  border:1px solid var(--borde);color:#fff;border-radius:6px;
+  font-size:13px;font-family:'DM Sans',sans-serif;outline:none;min-width:0;
+}
+.ve-tb-text input:focus{border-color:var(--rojo);}
+/* Botones de la toolbar */
+.ve-tb-btn{
+  width:28px;height:28px;border-radius:6px;border:none;
+  background:rgba(255,255,255,.07);color:var(--texto-suave);
+  font-size:11px;cursor:pointer;display:flex;align-items:center;
+  justify-content:center;transition:.15s;flex-shrink:0;
+  font-family:'DM Sans',sans-serif;font-weight:700;
+}
+.ve-tb-btn:hover{background:var(--rojo);color:#fff;}
+.ve-tb-btn.active{background:var(--rojo);color:#fff;}
+.ve-tb-color{width:26px;height:26px;border-radius:5px;border:1px solid var(--borde);cursor:pointer;padding:2px;flex-shrink:0;}
+.ve-tb-sep{width:1px;height:18px;background:var(--borde);flex-shrink:0;margin:0 2px;}
+.ve-tb-size{
+  width:46px;padding:4px 5px;background:rgba(255,255,255,.07);
+  border:1px solid var(--borde);color:#fff;border-radius:5px;
+  font-size:11px;font-family:'DM Sans',sans-serif;outline:none;text-align:center;
+}
+.ve-tb-size:focus{border-color:var(--rojo);}
+.ve-tb-close{
+  width:24px;height:24px;border-radius:5px;border:none;
+  background:rgba(232,0,28,.15);color:var(--rojo);
+  font-size:11px;cursor:pointer;display:flex;align-items:center;
+  justify-content:center;transition:.15s;margin-left:2px;flex-shrink:0;
+}
+.ve-tb-close:hover{background:var(--rojo);color:#fff;}
+.ve-tb-apply{
+  padding:4px 10px;border-radius:6px;border:none;
+  background:var(--rojo);color:#fff;font-size:11px;font-weight:700;
+  cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;
+  display:flex;align-items:center;gap:4px;transition:.15s;
+}
+.ve-tb-apply:hover{background:var(--rojo-dark);}
+.ve-tb-reset{
+  padding:4px 8px;border-radius:6px;border:1px solid var(--borde);
+  background:transparent;color:var(--texto-suave);font-size:11px;
+  cursor:pointer;font-family:'DM Sans',sans-serif;transition:.15s;
+}
+.ve-tb-reset:hover{border-color:var(--rojo);color:#fff;}
+/* Ocultar el panel antiguo grande — ya no se usa */
+.ve-props-panel{display:none!important;}
+.btn-apply-text{display:none;}
 
 /* ─── NOTICIAS EXTRA (acordeón "Ver más") ─── */
 .news-extra-wrap{margin-top:20px;}
@@ -560,68 +620,33 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
   <button class="ve-btn ve-btn-gray" onclick="veClose()"><i class="fas fa-times"></i> Cerrar</button>
 </div>
 
-<!-- Panel flotante de propiedades de elemento -->
-<div class="ve-props-panel" id="vePropsPanel">
-  <div class="ve-props-header">
-    <span id="vePropTitle">Elemento</span>
-    <button class="ve-props-close" onclick="veCloseProps()"><i class="fas fa-times"></i></button>
+<!-- ─── TOOLBAR COMPACTA (aparece sobre el elemento clickeado) ─── -->
+<div class="ve-toolbar" id="veToolbar">
+  <!-- Fila 1: texto editable + cerrar -->
+  <div class="ve-tb-text" id="veTbTextRow">
+    <input type="text" id="veTbTextInput" placeholder="Editar texto..."/>
   </div>
-
-  <div class="ve-prop" id="vePropTextWrap">
-    <label>Texto / Contenido</label>
-    <input type="text" id="vePropText" placeholder="Escribe aquí..."/>
-  </div>
-
-  <div class="ve-prop">
-    <label>Color de Texto</label>
-    <div class="ve-prop-inline">
-      <input type="color" id="vePropColor" value="#e8edf5"/>
-      <span style="font-size:11px;color:var(--texto-suave);">Selecciona el color</span>
-    </div>
-  </div>
-
-  <div class="ve-prop">
-    <label>Tamaño de fuente (px)</label>
-    <input type="number" id="vePropSize" placeholder="ej: 16" min="8" max="120"/>
-  </div>
-
-  <div class="ve-prop">
-    <label>Peso de fuente</label>
-    <select id="vePropWeight">
-      <option value="">— sin cambio —</option>
-      <option value="300">Delgada (300)</option>
-      <option value="400">Normal (400)</option>
-      <option value="500">Media (500)</option>
-      <option value="600">Semi-negrita (600)</option>
-      <option value="700">Negrita (700)</option>
-      <option value="900">Extra-negrita (900)</option>
-    </select>
-  </div>
-
-  <div class="ve-prop">
-    <label>Color de fondo</label>
-    <div class="ve-prop-inline">
-      <input type="color" id="vePropBg" value="#101f38"/>
-      <span style="font-size:11px;color:var(--texto-suave);">Fondo del elemento</span>
-    </div>
-  </div>
-
-  <div class="ve-prop">
-    <label>Padding (px)</label>
-    <div class="ve-prop-row">
-      <input type="number" id="vePropPadT" placeholder="Arr" min="0" max="200"/>
-      <input type="number" id="vePropPadH" placeholder="Lat" min="0" max="200"/>
-      <input type="number" id="vePropPadB" placeholder="Aba" min="0" max="200"/>
-    </div>
-  </div>
-
-  <div class="ve-prop">
-    <label>Border Radius (px)</label>
-    <input type="number" id="vePropRadius" placeholder="ej: 8" min="0" max="100"/>
-  </div>
-
-  <button class="btn-apply-text" onclick="veApplyProps()"><i class="fas fa-check"></i> Aplicar Cambios</button>
-  <button class="btn-apply-text" style="background:var(--borde);margin-top:4px;" onclick="veResetEl()"><i class="fas fa-undo"></i> Restaurar Original</button>
+  <!-- Fila 2: controles de estilo -->
+  <!-- Color texto -->
+  <input type="color" class="ve-tb-color" id="veTbColor" value="#e8edf5" title="Color del texto" oninput="veTbLiveColor(this.value)"/>
+  <!-- Tamaño -->
+  <input type="number" class="ve-tb-size" id="veTbSize" placeholder="px" min="8" max="120" title="Tamaño fuente"/>
+  <div class="ve-tb-sep"></div>
+  <!-- Negrita -->
+  <button class="ve-tb-btn" id="veTbBold" onclick="veTbToggleBold()" title="Negrita"><b>B</b></button>
+  <!-- Cursiva -->
+  <button class="ve-tb-btn" id="veTbItalic" onclick="veTbToggleItalic()" title="Cursiva"><i>I</i></button>
+  <div class="ve-tb-sep"></div>
+  <!-- Color fondo -->
+  <input type="color" class="ve-tb-color" id="veTbBg" value="#101f38" title="Color de fondo" oninput="veTbLiveBg(this.value)"/>
+  <span style="font-size:9px;color:var(--texto-suave);white-space:nowrap;">Fondo</span>
+  <div class="ve-tb-sep"></div>
+  <!-- Aplicar -->
+  <button class="ve-tb-apply" onclick="veTbApply()"><i class="fas fa-check"></i> OK</button>
+  <!-- Restaurar -->
+  <button class="ve-tb-reset" onclick="veTbReset()" title="Restaurar original"><i class="fas fa-undo"></i></button>
+  <!-- Cerrar -->
+  <button class="ve-tb-close" onclick="veCloseToolbar()" title="Cerrar"><i class="fas fa-times"></i></button>
 </div>
 
 <!-- Panel búsqueda imagen para editor visual hero -->
@@ -1487,20 +1512,23 @@ ${content}
 }
 
 /* ────────────────────────────────────────────
-   SHARE
+   SHARE — incluye imagen destacada en cada red
 ──────────────────────────────────────────── */
-function shareHTML(title,url){
+function shareHTML(title,url,img){
   const enc=encodeURIComponent;
   const text=enc(title);
   const link=enc(url);
+  // WhatsApp y Telegram usan la URL de la noticia que tiene el og:image
+  // Facebook y Twitter leen og:image automáticamente del URL
   return`<div class="share-row">
-    <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=${link}" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <button class="share-btn share-wa" onclick="openWhatsApp(event,'${title.replace(/'/g,"\\'")} ${url}')"><i class="fab fa-whatsapp"></i></button>
-    <a class="share-btn share-tw" href="https://twitter.com/intent/tweet?text=${text}&url=${link}" target="_blank"><i class="fab fa-x-twitter"></i></a>
-    <a class="share-btn share-tg" href="https://t.me/share/url?url=${link}&text=${text}" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-    <button class="share-btn share-cp" onclick="copyLink('${url}')"><i class="fas fa-link"></i></button>
+    <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=${link}" target="_blank" title="Compartir en Facebook"><i class="fab fa-facebook-f"></i></a>
+    <button class="share-btn share-wa" onclick="openWhatsApp(event,'${title.replace(/'/g,"\\'")} — ${url}')" title="Compartir en WhatsApp"><i class="fab fa-whatsapp"></i></button>
+    <a class="share-btn share-tw" href="https://twitter.com/intent/tweet?text=${text}&url=${link}" target="_blank" title="Compartir en X"><i class="fab fa-x-twitter"></i></a>
+    <a class="share-btn share-tg" href="https://t.me/share/url?url=${link}&text=${text}" target="_blank" title="Compartir en Telegram"><i class="fab fa-telegram-plane"></i></a>
+    <button class="share-btn share-cp" onclick="copyLink('${url}')" title="Copiar enlace"><i class="fas fa-link"></i></button>
   </div>`;
 }
+
 function copyLink(url){navigator.clipboard.writeText(url).then(()=>showToast('Enlace copiado','success'));}
 
 /* ────────────────────────────────────────────
@@ -1512,7 +1540,7 @@ function openArticleModal(postId){
   const img=extractImg(post.content||'');
   const cat=extractCat(post.content||'')||(post.labels&&post.labels[0])||'Noticias';
   const date=fmtDate(post.published);
-  const url=post.url||'#';
+  const url=post.url||window.location.href;
   const temp=document.createElement('div');
   temp.innerHTML=post.content||'';
   const mainImg=temp.querySelector('img.post-main-img');
@@ -1524,8 +1552,9 @@ function openArticleModal(postId){
   document.getElementById('modalTitle').textContent=post.title;
   document.getElementById('modalDate').textContent=date;
   document.getElementById('modalContent').innerHTML=cleanContent;
-  document.getElementById('modalShareRow').innerHTML=shareHTML(post.title,url);
+  document.getElementById('modalShareRow').innerHTML=shareHTML(post.title,url,img);
   document.getElementById('modalExternalLink').href=url;
+  // ── Actualizar OG/Twitter meta tags con imagen de ESTA noticia ──
   updateOG(post.title,extractText(cleanContent).substring(0,160),img,url);
   document.getElementById('articleModal').classList.add('show');
   document.body.style.overflow='hidden';
@@ -1556,7 +1585,7 @@ function renderFeatured(post){
         <p>${txt}${txt.length>=280?'…':''}</p>
         <div class="featured-actions">
           <button class="btn-read" onclick="openArticleModal('${post.id}')"><i class="fas fa-book-open"></i> Leer completo</button>
-          ${shareHTML(post.title,url)}
+          ${shareHTML(post.title,url,img)}
         </div>
       </div>
     </div>`;
@@ -1594,7 +1623,7 @@ function renderGrid(posts){
         <p>${txt}${txt.length>=150?'…':''}</p>
         <div class="card-footer">
           <button class="btn-read" onclick="openArticleModal('${post.id}')" style="font-size:13px;padding:8px 16px;"><i class="fas fa-book-open"></i> Leer</button>
-          ${shareHTML(post.title,post.url||'#')}
+          ${shareHTML(post.title,post.url||'#',extractImg(post.content||''))}
         </div>
       </div>
     </div>`;
@@ -1802,99 +1831,106 @@ function veElClick(e){
 
 function veShowProps(el,x,y){
   const panel=document.getElementById('vePropsPanel');
-  // Rellenar campos con valores actuales
+  // Rellenar toolbar con valores actuales del elemento
   const cs=window.getComputedStyle(el);
-  document.getElementById('vePropTitle').textContent=(el.getAttribute('data-ve')||'Elemento').replace(/-/g,' ');
 
-  // Texto: solo si no tiene hijos complejos
-  const hasChildren=el.children.length>0&&el.tagName!=='SPAN';
-  const txtWrap=document.getElementById('vePropTextWrap');
-  if(hasChildren&&!['SPAN','A'].includes(el.tagName)){
-    txtWrap.style.display='none';
+  // Texto editable
+  const isSimple=el.children.length===0||['SPAN','A','EM','STRONG'].includes(el.tagName);
+  const textRow=document.getElementById('veTbTextRow');
+  const textInput=document.getElementById('veTbTextInput');
+  if(isSimple){
+    textRow.style.display='flex';
+    textInput.value=el.innerText||el.textContent||'';
   }else{
-    txtWrap.style.display='block';
-    document.getElementById('vePropText').value=el.innerText||el.textContent||'';
+    textRow.style.display='none';
   }
 
   // Color texto
-  document.getElementById('vePropColor').value=rgbToHex(cs.color)||'#e8edf5';
+  const col=rgbToHex(cs.color);
+  if(col)document.getElementById('veTbColor').value=col;
+
   // Tamaño fuente
-  document.getElementById('vePropSize').value=parseInt(cs.fontSize)||'';
-  // Peso fuente
-  document.getElementById('vePropWeight').value='';
+  document.getElementById('veTbSize').value=parseInt(cs.fontSize)||'';
+
+  // Negrita / Italic
+  document.getElementById('veTbBold').classList.toggle('active',parseInt(cs.fontWeight)>=700);
+  document.getElementById('veTbItalic').classList.toggle('active',cs.fontStyle==='italic');
+
   // Fondo
   const bg=cs.backgroundColor;
-  document.getElementById('vePropBg').value=bg&&bg!=='rgba(0, 0, 0, 0)'?rgbToHex(bg):'#101f38';
-  // Padding
-  document.getElementById('vePropPadT').value=parseInt(cs.paddingTop)||'';
-  document.getElementById('vePropPadH').value=parseInt(cs.paddingLeft)||'';
-  document.getElementById('vePropPadB').value=parseInt(cs.paddingBottom)||'';
-  // Radius
-  document.getElementById('vePropRadius').value=parseInt(cs.borderRadius)||'';
+  if(bg&&bg!=='rgba(0, 0, 0, 0)')document.getElementById('veTbBg').value=rgbToHex(bg)||'#101f38';
 
-  // Guardar estilo original si no estaba guardado
+  // Guardar estilo original
   if(!veOrigStyles.has(el))veOrigStyles.set(el,el.getAttribute('style')||'');
 
-  // Posicionar panel cerca del clic, evitando salir de pantalla
-  panel.style.display='block';
-  const pw=panel.offsetWidth||260,ph=panel.offsetHeight||400;
-  let px=x+12,py=y+12;
-  if(px+pw>window.innerWidth-10)px=window.innerWidth-pw-10;
-  if(py+ph>window.innerHeight-10)py=window.innerHeight-ph-10;
-  panel.style.left=px+'px';panel.style.top=py+'px';
-  panel.classList.add('show');
+  // Posicionar toolbar SOBRE el elemento (no encima del cursor)
+  const toolbar=document.getElementById('veToolbar');
+  toolbar.style.display='flex'; // necesario para medir
+  const rect=el.getBoundingClientRect();
+  const tw=toolbar.offsetWidth||300;
+  const th=toolbar.offsetHeight||44;
+  let tx=rect.left;
+  let ty=rect.top-th-10; // 10px sobre el elemento
+  if(tx+tw>window.innerWidth-8)tx=window.innerWidth-tw-8;
+  if(tx<8)tx=8;
+  if(ty<60)ty=rect.bottom+10; // si no cabe arriba, va abajo
+  toolbar.style.left=tx+'px';
+  toolbar.style.top=ty+'px';
+  toolbar.classList.add('show');
 }
 
-function veCloseProps(){
-  document.getElementById('vePropsPanel').classList.remove('show');
-  if(veSelectedEl)veSelectedEl.classList.remove('ve-selected');
-  veSelectedEl=null;
+/* ─── Toolbar: live preview ─── */
+function veTbLiveColor(v){if(veSelectedEl)veSelectedEl.style.color=v;}
+function veTbLiveBg(v){if(veSelectedEl)veSelectedEl.style.backgroundColor=v;}
+function veTbToggleBold(){
+  if(!veSelectedEl)return;
+  const cs=window.getComputedStyle(veSelectedEl);
+  const isBold=parseInt(cs.fontWeight)>=700;
+  veSelectedEl.style.fontWeight=isBold?'400':'700';
+  document.getElementById('veTbBold').classList.toggle('active',!isBold);
+}
+function veTbToggleItalic(){
+  if(!veSelectedEl)return;
+  const cs=window.getComputedStyle(veSelectedEl);
+  const isItalic=cs.fontStyle==='italic';
+  veSelectedEl.style.fontStyle=isItalic?'normal':'italic';
+  document.getElementById('veTbItalic').classList.toggle('active',!isItalic);
 }
 
-function veApplyProps(){
+/* ─── Toolbar: aplicar y cerrar ─── */
+function veTbApply(){
   if(!veSelectedEl)return;
   const el=veSelectedEl;
-  const txt=document.getElementById('vePropText').value;
-  const color=document.getElementById('vePropColor').value;
-  const size=document.getElementById('vePropSize').value;
-  const weight=document.getElementById('vePropWeight').value;
-  const bg=document.getElementById('vePropBg').value;
-  const padT=document.getElementById('vePropPadT').value;
-  const padH=document.getElementById('vePropPadH').value;
-  const padB=document.getElementById('vePropPadB').value;
-  const radius=document.getElementById('vePropRadius').value;
-
-  // Aplicar texto (solo si el campo es visible y tiene valor)
-  const txtWrap=document.getElementById('vePropTextWrap');
-  if(txtWrap.style.display!=='none'&&txt){
-    // Si tiene hijos con tags, no pisar. Si es texto simple, sí.
-    if(el.children.length===0||['SPAN','A'].includes(el.tagName)){
+  const textRow=document.getElementById('veTbTextRow');
+  // Texto
+  if(textRow.style.display!=='none'){
+    const txt=document.getElementById('veTbTextInput').value;
+    if(txt&&(el.children.length===0||['SPAN','A','EM','STRONG'].includes(el.tagName))){
       el.textContent=txt;
     }
   }
-
-  if(color)el.style.color=color;
-  if(size)el.style.fontSize=size+'px';
-  if(weight)el.style.fontWeight=weight;
-  if(bg)el.style.backgroundColor=bg;
-  if(padT!==''||padH!==''||padB!==''){
-    el.style.paddingTop=(padT||0)+'px';
-    el.style.paddingLeft=(padH||0)+'px';
-    el.style.paddingRight=(padH||0)+'px';
-    el.style.paddingBottom=(padB||0)+'px';
-  }
-  if(radius!=='')el.style.borderRadius=radius+'px';
-
-  showToast('Cambios aplicados','success');
+  // Tamaño
+  const sz=document.getElementById('veTbSize').value;
+  if(sz)el.style.fontSize=sz+'px';
+  showToast('Cambios aplicados ✓','success');
+  veCloseToolbar();
 }
-
-function veResetEl(){
+function veTbReset(){
   if(!veSelectedEl)return;
-  const orig=veOrigStyles.get(veSelectedEl);
-  veSelectedEl.setAttribute('style',orig||'');
+  const orig=veOrigStyles.get(veSelectedEl)||'';
+  veSelectedEl.setAttribute('style',orig);
   showToast('Elemento restaurado','info');
-  veCloseProps();
+  veCloseToolbar();
 }
+function veCloseToolbar(){
+  document.getElementById('veToolbar').classList.remove('show');
+  if(veSelectedEl)veSelectedEl.classList.remove('ve-selected');
+  veSelectedEl=null;
+}
+/* Alias para compatibilidad con código anterior */
+function veCloseProps(){veCloseToolbar();}
+function veApplyProps(){veTbApply();}
+function veResetEl(){veTbReset();}
 
 /* ─── Utilidad: rgb(a,b,c) → #rrggbb ─── */
 function rgbToHex(rgb){
@@ -1910,7 +1946,6 @@ function rgbToHex(rgb){
    preservando funciones intactas.
 ──────────────────────────────────────────── */
 function veExportHTML(){
-  // Capturar estilos CSS custom properties actuales
   const cs=document.documentElement.style;
   const rojo     =cs.getPropertyValue('--rojo').trim()    ||'#e8001c';
   const rojoDark =cs.getPropertyValue('--rojo-dark').trim()||'#b0001a';
@@ -1918,27 +1953,23 @@ function veExportHTML(){
   const azulCard =cs.getPropertyValue('--azul-card').trim()||'#101f38';
   const texto    =cs.getPropertyValue('--texto').trim()   ||'#e8edf5';
 
-  // Clonar el documento actual
   const clone=document.documentElement.cloneNode(true);
 
-  // 1. Eliminar la barra del editor visual, el panel de propiedades,
-  //    y los paneles modales de búsqueda de imagen del editor visual
-  //    (no son parte de la web pública)
-  const removeIds=['veBar','vePropsPanel','veImgBackdrop','veImgPanel','inlineImgBackdrop','inlineImgPanel'];
+  // 1. Eliminar elementos de editor (no van en la web pública)
+  const removeIds=['veBar','veToolbar','vePropsPanel','veImgBackdrop','veImgPanel','inlineImgBackdrop','inlineImgPanel'];
   removeIds.forEach(id=>{const el=clone.querySelector('#'+id);if(el)el.remove();});
 
-  // 2. Quitar atributos ve-mode del body
+  // 2. Limpiar clases de editor del body
   clone.querySelector('body').classList.remove('ve-mode');
 
-  // 3. Restaurar posición del header (el editor la mueve)
+  // 3. Restaurar header
   const hdr=clone.querySelector('header');
   if(hdr)hdr.style.top='';
 
-  // 4. Quitar clases ve-selected de elementos
+  // 4. Quitar clases ve-selected
   clone.querySelectorAll('.ve-selected').forEach(el=>el.classList.remove('ve-selected'));
 
-  // 5. Inyectar los colores actuales en el :root del CSS
-  //    Buscamos el bloque :root en el primer <style> y lo reemplazamos
+  // 5. Inyectar colores en :root
   const styles=clone.querySelectorAll('style');
   styles.forEach(style=>{
     if(style.textContent.includes('--rojo:')){
@@ -1951,38 +1982,43 @@ function veExportHTML(){
     }
   });
 
-  // 6. Aplicar la fuente global si fue cambiada
+  // 6. Fuente global
   const bodyFont=document.body.style.fontFamily;
-  if(bodyFont){
-    const cloneBody=clone.querySelector('body');
-    cloneBody.style.fontFamily=bodyFont;
-  }
+  if(bodyFont)clone.querySelector('body').style.fontFamily=bodyFont;
 
-  // 7. Aplicar imagen del hero si fue cambiada
+  // 7. Imagen hero
   const heroSrc=document.getElementById('heroBgImg').src;
   const cloneHeroImg=clone.querySelector('#heroBgImg');
   if(cloneHeroImg)cloneHeroImg.src=heroSrc;
 
-  // 8. Aplicar los cambios de estilo inline de cada [data-ve] editado
+  // 8. Estilos inline de elementos editados
   document.querySelectorAll('[data-ve]').forEach(el=>{
     const veId=el.getAttribute('data-ve');
     const style=el.getAttribute('style');
-    if(style){
-      const cloneEl=clone.querySelector(`[data-ve="${veId}"]`);
-      if(cloneEl)cloneEl.setAttribute('style',style);
-    }
-    // Texto editado
-    if(el.getAttribute('data-ve-text')){
-      const cloneEl=clone.querySelector(`[data-ve="${veId}"]`);
-      if(cloneEl)cloneEl.textContent=el.textContent;
+    const cloneEl=clone.querySelector(`[data-ve="${veId}"]`);
+    if(cloneEl){
+      if(style)cloneEl.setAttribute('style',style);
+      // Preservar texto editado
+      if(el.children.length===0||['SPAN','A','EM','STRONG'].includes(el.tagName)){
+        cloneEl.textContent=el.textContent;
+      }
     }
   });
 
-  // 9. Quitar el botón "Editar Web" del admin bar (no parte de la web pública)
+  // 9. Quitar botón "Editar Web"
   const editWebBtn=clone.querySelector('.btn-new-post[onclick="veOpen()"]');
   if(editWebBtn)editWebBtn.remove();
 
-  // 10. Serializar y descargar
+  // 10. Descargar
+  const htmlStr='<!doctype html>\n'+clone.outerHTML;
+  const blob=new Blob([htmlStr],{type:'text/html;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='informate_con_la_dama_editado.html';
+  document.body.appendChild(a);a.click();
+  document.body.removeChild(a);URL.revokeObjectURL(a.href);
+  showToast('¡HTML exportado! Pégalo en tu Blogger','success');
+}
   const htmlStr='<!doctype html>\n'+clone.outerHTML;
   const blob=new Blob([htmlStr],{type:'text/html;charset=utf-8'});
   const a=document.createElement('a');
@@ -1995,12 +2031,12 @@ function veExportHTML(){
   showToast('¡HTML exportado! Pégalo en tu Blogger','success');
 }
 
-/* Cerrar panel de props si clic fuera */
+/* Cerrar toolbar si clic fuera */
 document.addEventListener('click',e=>{
   if(!veEditModeActive)return;
-  const panel=document.getElementById('vePropsPanel');
-  if(panel.classList.contains('show')&&!panel.contains(e.target)&&!e.target.closest('[data-ve]')){
-    veCloseProps();
+  const toolbar=document.getElementById('veToolbar');
+  if(toolbar.classList.contains('show')&&!toolbar.contains(e.target)&&!e.target.closest('[data-ve]')){
+    veCloseToolbar();
   }
 });
 
