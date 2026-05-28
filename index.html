@@ -1,18 +1,18 @@
 <!doctype html>
-<html lang="es">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Infórmate Con La Dama</title>
+
+
+
+
+Infórmate Con La Dama
 
 <!-- OG -->
-<meta id="og-title"       property="og:title"       content="Infórmate Con La Dama"/>
-<meta id="og-description" property="og:description" content="Tu portal informativo de Barranquilla"/>
-<meta id="og-image"       property="og:image"       content=""/>
-<meta id="og-url"         property="og:url"         content=""/>
-<meta id="tw-title"       name="twitter:title"      content="Infórmate Con La Dama"/>
-<meta id="tw-description" name="twitter:description"content="Tu portal informativo de Barranquilla"/>
-<meta id="tw-image"       name="twitter:image"      content=""/>
+
+
+
+
+
+
+
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -364,8 +364,7 @@ body.ve-mode [data-ve]{outline:2px dashed transparent;outline-offset:3px;cursor:
 body.ve-mode [data-ve]:hover{outline-color:rgba(232,0,28,.6);}
 body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
 
-/* ─── TOOLBAR FLOTANTE COMPACTA (reemplaza panel pesado) ─── */
-/* Aparece justo sobre el elemento, se cierra con X o clic fuera */
+/* ─── TOOLBAR FLOTANTE COMPACTA ─── */
 .ve-toolbar{
   position:fixed;
   background:rgba(7,16,29,.97);
@@ -382,13 +381,11 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
   backdrop-filter:blur(12px);
 }
 .ve-toolbar.show{display:flex;}
-/* Flecha indicadora hacia el elemento */
 .ve-toolbar::after{
   content:'';position:absolute;bottom:-7px;left:20px;
   border:7px solid transparent;border-top-color:var(--borde);
   border-bottom:none;
 }
-/* Sección del texto editable inline */
 .ve-tb-text{
   width:100%;display:flex;align-items:center;gap:4px;
   border-bottom:1px solid var(--borde);padding-bottom:5px;margin-bottom:2px;
@@ -399,7 +396,6 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
   font-size:13px;font-family:'DM Sans',sans-serif;outline:none;min-width:0;
 }
 .ve-tb-text input:focus{border-color:var(--rojo);}
-/* Botones de la toolbar */
 .ve-tb-btn{
   width:28px;height:28px;border-radius:6px;border:none;
   background:rgba(255,255,255,.07);color:var(--texto-suave);
@@ -437,7 +433,6 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
   cursor:pointer;font-family:'DM Sans',sans-serif;transition:.15s;
 }
 .ve-tb-reset:hover{border-color:var(--rojo);color:#fff;}
-/* Ocultar el panel antiguo grande — ya no se usa */
 .ve-props-panel{display:none!important;}
 .btn-apply-text{display:none;}
 
@@ -447,7 +442,6 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
 .btn-ver-mas:hover{background:rgba(232,0,28,.18);border-color:var(--rojo);}
 .btn-ver-mas i{transition:transform .3s;}
 .btn-ver-mas.open i.fa-chevron-down{transform:rotate(180deg);}
-/* Mini-lista de noticias extra */
 .news-mini-list{display:none;margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;}
 .news-mini-list.collapsed{display:none!important;}
 .news-mini-card{background:var(--azul-card);border:1px solid var(--borde);border-radius:10px;overflow:hidden;display:flex;align-items:center;gap:0;cursor:pointer;transition:all .25s;}
@@ -483,18 +477,13 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
   .player{padding:0 12px;gap:8px;}
   .vol-wrap{display:none;}
   .player-scroll-wrap{width:90px;}
-
-  /* ── HERO MÓVIL — fix real del espacio vacío ──
-     La imagen tiene la persona a la derecha-centro.
-     Usamos un alto compacto y object-position preciso. */
   .hero{
-    min-height:65vh;          /* Altura compacta: no 100vh, solo lo necesario */
+    min-height:65vh;
     max-height:75vh;
-    padding:100px 5% 32px;    /* padding-top alto para dejar espacio al header */
-    align-items:flex-end;      /* texto al fondo */
+    padding:100px 5% 32px;
+    align-items:flex-end;
   }
   .hero-bg img{
-    /* 65% horizontal lleva al centro-derecha donde está la persona */
     object-position:65% 25%;
     animation:heroPanMobile 20s ease-in-out infinite alternate;
   }
@@ -503,149 +492,101 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
     50% {transform:scale(1.08) translateX(-3%);}
     100%{transform:scale(1.06) translateX(-1%);}
   }
-  /* Gradiente: más oscuro abajo para legibilidad del texto */
   .hero-bg::after{background:linear-gradient(to bottom,rgba(7,16,29,.25) 0%,rgba(7,16,29,.55) 50%,rgba(7,16,29,.95) 100%);}
   .hero::after{height:80px;}
   .hero-inner{max-width:100%;}
   .hero h1{font-size:clamp(28px,6.5vw,42px);}
   .hero p{font-size:14px;}
   .hero-badge{font-size:10px;padding:4px 10px;}
-
-  /* Hero: sliders de posición imagen (solo en editor visual) */
   .ve-hero-pos-controls{display:flex!important;}
-
-  /* Noticias en móvil: 1 columna */
   .news-grid{grid-template-columns:1fr;}
   .news-mini-list{grid-template-columns:1fr;}
-
-  /* Section header más compacto */
   .section-header{margin-bottom:24px;}
   .section-title{font-size:22px;}
-
-  /* Featured en móvil */
   .featured-body{padding:20px;}
   .featured-body h2{font-size:18px;}
   .featured-body p{font-size:13px;}
   .featured-img{min-height:200px;}
-
-  /* Modal compacto en móvil */
   .modal-body{padding:18px;}
   .modal-title{font-size:20px;}
   .modal-content{font-size:14px;}
 }
 </style>
-</head>
-<body>
+
+
 
 <!-- ─── BARRA EDITOR VISUAL (solo admin) ─── -->
 <div class="ve-bar" id="veBar">
   <span class="ve-bar-title"><i class="fas fa-magic"></i> Editor Visual</span>
   <div class="ve-sep"></div>
-
-  <!-- Color acento -->
   <div class="ve-group">
     <span class="ve-label">Acento</span>
     <input type="color" class="ve-color" id="veColorAccent" value="#e8001c" oninput="veApplyColor('rojo',this.value)"/>
   </div>
-
-  <!-- Color fondo -->
   <div class="ve-group">
     <span class="ve-label">Fondo</span>
     <input type="color" class="ve-color" id="veColorBg" value="#07101d" oninput="veApplyColor('negro',this.value)"/>
   </div>
-
-  <!-- Color cards -->
   <div class="ve-group">
     <span class="ve-label">Cards</span>
     <input type="color" class="ve-color" id="veColorCard" value="#101f38" oninput="veApplyColor('azul-card',this.value)"/>
   </div>
-
-  <!-- Color texto -->
   <div class="ve-group">
     <span class="ve-label">Texto</span>
     <input type="color" class="ve-color" id="veColorText" value="#e8edf5" oninput="veApplyColor('texto',this.value)"/>
   </div>
-
   <div class="ve-sep"></div>
-
-  <!-- Fuente global -->
   <div class="ve-group">
     <span class="ve-label">Fuente</span>
     <select class="ve-select" onchange="veApplyFont(this.value)">
-      <option value="'DM Sans',sans-serif">DM Sans</option>
-      <option value="'Georgia',serif">Georgia</option>
-      <option value="'Trebuchet MS',sans-serif">Trebuchet</option>
-      <option value="'Courier New',monospace">Courier</option>
-      <option value="'Arial',sans-serif">Arial</option>
-      <option value="'Verdana',sans-serif">Verdana</option>
+      <option value="&#39;DM Sans&#39;,sans-serif" />DM Sans
+      <option value="&#39;Georgia&#39;,serif" />Georgia
+      <option value="&#39;Trebuchet MS&#39;,sans-serif" />Trebuchet
+      <option value="&#39;Courier New&#39;,monospace" />Courier
+      <option value="&#39;Arial&#39;,sans-serif" />Arial
+      <option value="&#39;Verdana&#39;,sans-serif" />Verdana
     </select>
   </div>
-
   <div class="ve-sep"></div>
-
-  <!-- Imagen hero -->
   <div class="ve-group">
     <button class="ve-btn ve-btn-gray" onclick="veChangeHeroImg()"><i class="fas fa-image"></i> Imagen Hero</button>
   </div>
-
-  <!-- Posición imagen hero X -->
   <div class="ve-group" style="flex-direction:column;gap:2px;">
     <span class="ve-label">Pos. X img</span>
     <input type="range" id="veHeroPosX" min="0" max="100" value="65" style="width:80px;height:4px;accent-color:var(--rojo);" oninput="veHeroPos()" title="Posición horizontal"/>
   </div>
-
-  <!-- Posición imagen hero Y -->
   <div class="ve-group" style="flex-direction:column;gap:2px;">
     <span class="ve-label">Pos. Y img</span>
     <input type="range" id="veHeroPosY" min="0" max="100" value="25" style="width:80px;height:4px;accent-color:var(--rojo);" oninput="veHeroPos()" title="Posición vertical"/>
   </div>
-
-  <!-- Alto hero -->
   <div class="ve-group" style="flex-direction:column;gap:2px;">
     <span class="ve-label">Alto hero</span>
     <input type="range" id="veHeroHeight" min="40" max="100" value="65" style="width:80px;height:4px;accent-color:var(--rojo);" oninput="veApplyHeroHeight()" title="Altura del hero en vh"/>
   </div>
-
-  <!-- Modo editar textos -->
   <div class="ve-group">
     <button class="ve-btn ve-btn-gray" id="btnVeEditMode" onclick="veToggleEditMode()"><i class="fas fa-mouse-pointer"></i> Editar Elementos</button>
   </div>
-
   <div class="ve-sep"></div>
-
-  <!-- Exportar -->
   <button class="ve-btn ve-btn-green" onclick="veExportHTML()"><i class="fas fa-download"></i> Exportar HTML</button>
-
-  <!-- Cerrar editor visual -->
   <button class="ve-btn ve-btn-gray" onclick="veClose()"><i class="fas fa-times"></i> Cerrar</button>
 </div>
 
-<!-- ─── TOOLBAR COMPACTA (aparece sobre el elemento clickeado) ─── -->
+<!-- ─── TOOLBAR COMPACTA ─── -->
 <div class="ve-toolbar" id="veToolbar">
-  <!-- Fila 1: texto editable + cerrar -->
   <div class="ve-tb-text" id="veTbTextRow">
     <input type="text" id="veTbTextInput" placeholder="Editar texto..."/>
   </div>
-  <!-- Fila 2: controles de estilo -->
-  <!-- Color texto -->
   <input type="color" class="ve-tb-color" id="veTbColor" value="#e8edf5" title="Color del texto" oninput="veTbLiveColor(this.value)"/>
-  <!-- Tamaño -->
   <input type="number" class="ve-tb-size" id="veTbSize" placeholder="px" min="8" max="120" title="Tamaño fuente"/>
   <div class="ve-tb-sep"></div>
-  <!-- Negrita -->
   <button class="ve-tb-btn" id="veTbBold" onclick="veTbToggleBold()" title="Negrita"><b>B</b></button>
-  <!-- Cursiva -->
   <button class="ve-tb-btn" id="veTbItalic" onclick="veTbToggleItalic()" title="Cursiva"><i>I</i></button>
   <div class="ve-tb-sep"></div>
-  <!-- Color fondo -->
   <input type="color" class="ve-tb-color" id="veTbBg" value="#101f38" title="Color de fondo" oninput="veTbLiveBg(this.value)"/>
   <span style="font-size:9px;color:var(--texto-suave);white-space:nowrap;">Fondo</span>
   <div class="ve-tb-sep"></div>
-  <!-- Aplicar -->
   <button class="ve-tb-apply" onclick="veTbApply()"><i class="fas fa-check"></i> OK</button>
-  <!-- Restaurar -->
   <button class="ve-tb-reset" onclick="veTbReset()" title="Restaurar original"><i class="fas fa-undo"></i></button>
-  <!-- Cerrar -->
   <button class="ve-tb-close" onclick="veCloseToolbar()" title="Cerrar"><i class="fas fa-times"></i></button>
 </div>
 
@@ -704,7 +645,7 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
     <div class="img-upload-area">
       <input type="file" accept="image/*" onchange="inlineHandleUpload(this)"/>
       <i class="fas fa-compress-arrows-alt"></i>
-      <span id="inlineUploadLabel">Subir imagen — se comprimirá automáticamente<br><small>Máx 1200px · ~150kb</small></span>
+      <span id="inlineUploadLabel">Subir imagen — se comprimirá automáticamente<br /><small>Máx 1200px · ~150kb</small></span>
     </div>
     <canvas id="compressCanvas" style="display:none;"></canvas>
   </div>
@@ -824,7 +765,7 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
     <button class="play-btn" id="playBtn" onclick="toggleRadio()"><i class="fas fa-play"></i></button>
   </div>
 </div>
-<audio id="radio" preload="none"><source src="https://stream-165.zeno.fm/dcq5bzrkiyutv" type="audio/mpeg"/></audio>
+<audio id="radio" preload="none"><source src="https://stream-165.zeno.fm/dcq5bzrkiyutv" type="audio/mpeg"/></source></audio>
 
 <!-- ─── MODAL LECTOR ─── -->
 <div class="modal-overlay" id="articleModal" onclick="closeModalOnBg(event)">
@@ -863,7 +804,7 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
     <h2>Acceso Administrador</h2>
     <p>Ingresa con tu cuenta Google para gestionar las noticias del portal.</p>
     <button class="btn-google" onclick="googleLogin()">
-      <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.2l6.7-6.7C35.8 2.5 30.2 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.8 6C12.3 13 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17z"/><path fill="#FBBC05" d="M10.5 28.7a14.5 14.5 0 0 1 0-9.4l-7.8-6A24 24 0 0 0 0 24c0 3.9.9 7.5 2.7 10.7l7.8-6z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.5-5.8c-2 1.4-4.6 2.2-7.7 2.2-6.3 0-11.7-4.2-13.5-10l-7.8 6C6.6 42.6 14.6 48 24 48z"/></svg>
+      <svg width="20" height="20" viewbox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.2l6.7-6.7C35.8 2.5 30.2 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.8 6C12.3 13 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17z"/><path fill="#FBBC05" d="M10.5 28.7a14.5 14.5 0 0 1 0-9.4l-7.8-6A24 24 0 0 0 0 24c0 3.9.9 7.5 2.7 10.7l7.8-6z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.5-5.8c-2 1.4-4.6 2.2-7.7 2.2-6.3 0-11.7-4.2-13.5-10l-7.8 6C6.6 42.6 14.6 48 24 48z"/></path></path></path></path></svg>
       Continuar con Google
     </button>
     <button class="btn-close-popup" onclick="closePopup('loginPopup')">Cancelar</button>
@@ -896,17 +837,12 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
         <input type="text" id="inpTitle" placeholder="Escribe el titular aquí..."/>
       </div>
 
-      <!-- Imagen principal: URL + buscador Unsplash + subir/pegar -->
       <div class="form-group">
         <label>Imagen Principal</label>
         <input type="text" id="inpImage" placeholder="https://... o usa las opciones abajo" oninput="previewMainImg(this.value)"/>
-
-        <!-- Botón para buscador Unsplash portada -->
         <button class="btn-unsplash-toggle" onclick="toggleUnsplashPanel()">
           <i class="fas fa-search"></i> Buscar imagen en Unsplash
         </button>
-
-        <!-- Panel Unsplash portada -->
         <div class="unsplash-panel" id="unsplashPanelMain">
           <div class="unsplash-search">
             <input type="text" id="unsplashMainQ" placeholder="ej: barranquilla, noticias..." onkeydown="if(event.key==='Enter')searchUnsplashMain()"/>
@@ -917,12 +853,10 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
           </div>
           <p style="font-size:10px;color:var(--texto-suave);margin-top:6px;">Fotos gratuitas de Unsplash</p>
         </div>
-
-        <!-- Subir desde archivo con compresión -->
         <div class="img-upload-area" id="imgUploadArea" title="Haz clic o arrastra una imagen">
           <input type="file" id="imgFileInput" accept="image/*" onchange="handleImgFile(this)"/>
           <i class="fas fa-cloud-upload-alt"></i>
-          <span id="imgUploadLabel">Subir imagen desde móvil / PC &nbsp;·&nbsp; se comprimirá automáticamente<br><small>Máx 1200px · ~150kb · o pegar con Ctrl+V</small></span>
+          <span id="imgUploadLabel">Subir imagen desde móvil / PC &nbsp;·&nbsp; se comprimirá automáticamente<br /><small>Máx 1200px · ~150kb · o pegar con Ctrl+V</small></span>
         </div>
         <canvas id="mainCompressCanvas" style="display:none;"></canvas>
         <img id="imgPreview" src="" alt="" style="display:none;width:100%;border-radius:8px;margin-top:6px;max-height:140px;object-fit:cover;"/>
@@ -931,26 +865,25 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
       <div class="form-group">
         <label>Categoría</label>
         <select id="inpCat">
-          <option value="Local">Local</option>
-          <option value="Nacional">Nacional</option>
-          <option value="Internacional">Internacional</option>
-          <option value="Política">Política</option>
-          <option value="Economía">Economía</option>
-          <option value="Deportes">Deportes</option>
-          <option value="Entretenimiento">Entretenimiento</option>
+          <option value="Local" />Local
+          <option value="Nacional" />Nacional
+          <option value="Internacional" />Internacional
+          <option value="Política" />Política
+          <option value="Economía" />Economía
+          <option value="Deportes" />Deportes
+          <option value="Entretenimiento" />Entretenimiento
         </select>
       </div>
 
-      <!-- EDITOR ENRIQUECIDO -->
       <div class="form-group">
         <label>Contenido</label>
         <div class="rich-editor-toolbar" id="editorToolbar">
           <select class="tb-select" onchange="execCmd('formatBlock',this.value);this.value='p';">
-            <option value="p">Párrafo</option>
-            <option value="h1">Título H1</option>
-            <option value="h2">Subtítulo H2</option>
-            <option value="h3">Encabezado H3</option>
-            <option value="blockquote">Cita</option>
+            <option value="p" />Párrafo
+            <option value="h1" />Título H1
+            <option value="h2" />Subtítulo H2
+            <option value="h3" />Encabezado H3
+            <option value="blockquote" />Cita
           </select>
           <div class="tb-sep"></div>
           <button class="tb-btn" onclick="execCmd('bold')" title="Negrita"><b>B</b></button>
@@ -967,9 +900,7 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
           <div class="tb-sep"></div>
           <input type="color" class="tb-color" value="#e8edf5" onchange="execCmd('foreColor',this.value)" title="Color texto"/>
           <button class="tb-btn" onclick="insertLink()" title="Enlace"><i class="fas fa-link"></i></button>
-          <!-- Insertar imagen inline con panel completo -->
           <button class="tb-btn" onclick="openInlineImgPanel()" title="Insertar imagen"><i class="fas fa-image"></i></button>
-          <!-- Insertar video -->
           <button class="tb-btn" onclick="insertVideoEmbed()" title="Insertar video"><i class="fas fa-film"></i></button>
           <div class="tb-sep"></div>
           <button class="tb-btn" onclick="execCmd('removeFormat')" title="Limpiar"><i class="fas fa-eraser"></i></button>
@@ -1014,9 +945,6 @@ body.ve-mode [data-ve].ve-selected{outline-color:var(--rojo);}
 <!-- ─── TOAST ─── -->
 <div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Listo</span></div>
 
-<!-- ═══════════════════════════════════════════════════
-     SCRIPT
-═══════════════════════════════════════════════════ -->
 <script>
 /* ────────────────────────────────────────────
    CONFIG
@@ -1025,7 +953,7 @@ const BLOG_ID   = "7955178678531945784";
 const API_KEY   = "AIzaSyCdWxkJGmL0Hq5bn_MX_XoTuuoTk6JMjT8";
 const CLIENT_ID = "882977688404-qgok2a3nitjvp1m19j1onosg91h0i99a.apps.googleusercontent.com";
 const WA_NUMBER = "50765489138";
-const UNSPLASH_ACCESS_KEY = "jvCzFhSNDe3aCHVVUSmk5pVAuDTbN2FuvMb0sifxnHk"; // clave pública demo
+const UNSPLASH_ACCESS_KEY = "jvCzFhSNDe3aCHVVUSmk5pVAuDTbN2FuvMb0sifxnHk";
 
 /* ────────────────────────────────────────────
    STATE
@@ -1038,7 +966,7 @@ let tokenClient;
 let veSelectedEl     = null;
 let veOrigStyles     = new WeakMap();
 let veEditModeActive = false;
-let savedRichSel     = null; // para restaurar selección en editor al insertar imagen
+let savedRichSel     = null;
 
 /* ────────────────────────────────────────────
    AUTOPLAY RADIO
@@ -1259,7 +1187,6 @@ function handleImgFile(input){
   });
 }
 
-// Pegar imagen (portada) con Ctrl+V fuera del editor
 document.addEventListener('paste',(e)=>{
   if(document.activeElement===document.getElementById('richEditor'))return;
   const items=(e.clipboardData||e.originalEvent.clipboardData).items;
@@ -1297,9 +1224,7 @@ function insertLink(){
   if(url)execCmd('createLink',url);
 }
 
-/* ─── Panel de imagen inline (en cuerpo de noticia) ─── */
 function openInlineImgPanel(){
-  // Guardar selección actual del editor
   const sel=window.getSelection();
   if(sel&&sel.rangeCount>0)savedRichSel=sel.getRangeAt(0).cloneRange();
   document.getElementById('inlineImgBackdrop').classList.add('show');
@@ -1355,7 +1280,6 @@ function inlineHandleUpload(input){
   });
 }
 
-/* ─── Pegar imagen en editor de contenido ─── */
 function handleEditorPaste(e){
   const items=(e.clipboardData||e.originalEvent.clipboardData).items;
   for(const item of items){
@@ -1372,7 +1296,6 @@ function handleEditorPaste(e){
   }
 }
 
-/* ─── Video embed ─── */
 function getEmbedUrl(url){
   const ytMatch=url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
   if(ytMatch)return`https://www.youtube.com/embed/${ytMatch[1]}?rel=0`;
@@ -1496,11 +1419,11 @@ ${content}
     if(editingPostId){
       r=await fetch(`https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts/${editingPostId}`,
         {method:'PUT',headers:{'Authorization':'Bearer '+accessToken,'Content-Type':'application/json'},
-         body:JSON.stringify({kind:"blogger#post",id:editingPostId,title,content:html})});
+         body:JSON.stringify({kind:"blogger#post",id:editingPostId,title,content:html,images:imgUrl?[{url:imgUrl}]:[]})});
     }else{
       r=await fetch(`https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts/`,
         {method:'POST',headers:{'Authorization':'Bearer '+accessToken,'Content-Type':'application/json'},
-         body:JSON.stringify({kind:"blogger#post",title,content:html})});
+         body:JSON.stringify({kind:"blogger#post",title,content:html,images:imgUrl?[{url:imgUrl}]:[]})});
     }
     if(r.ok){
       showToast(editingPostId?'¡Noticia actualizada!':'¡Noticia publicada!','success');
@@ -1512,14 +1435,12 @@ ${content}
 }
 
 /* ────────────────────────────────────────────
-   SHARE — incluye imagen destacada en cada red
+   SHARE
 ──────────────────────────────────────────── */
 function shareHTML(title,url,img){
   const enc=encodeURIComponent;
   const text=enc(title);
   const link=enc(url);
-  // WhatsApp y Telegram usan la URL de la noticia que tiene el og:image
-  // Facebook y Twitter leen og:image automáticamente del URL
   return`<div class="share-row">
     <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=${link}" target="_blank" title="Compartir en Facebook"><i class="fab fa-facebook-f"></i></a>
     <button class="share-btn share-wa" onclick="openWhatsApp(event,'${title.replace(/'/g,"\\'")} — ${url}')" title="Compartir en WhatsApp"><i class="fab fa-whatsapp"></i></button>
@@ -1554,7 +1475,6 @@ function openArticleModal(postId){
   document.getElementById('modalContent').innerHTML=cleanContent;
   document.getElementById('modalShareRow').innerHTML=shareHTML(post.title,url,img);
   document.getElementById('modalExternalLink').href=url;
-  // ── Actualizar OG/Twitter meta tags con imagen de ESTA noticia ──
   updateOG(post.title,extractText(cleanContent).substring(0,160),img,url);
   document.getElementById('articleModal').classList.add('show');
   document.body.style.overflow='hidden';
@@ -1593,7 +1513,7 @@ function renderFeatured(post){
 }
 
 /* ────────────────────────────────────────────
-   RENDER GRID — 5 principales + acordeón mini
+   RENDER GRID
 ──────────────────────────────────────────── */
 function renderGrid(posts){
   const container=document.getElementById('newsContainer');
@@ -1601,12 +1521,8 @@ function renderGrid(posts){
     container.innerHTML=`<div class="empty-state"><i class="fas fa-newspaper"></i><p>Aún no hay noticias publicadas.<br>¡Sé la primera en agregar una!</p></div>`;
     return;
   }
-
-  // Primeras 5 noticias — cards completas
   const main=posts.slice(0,5);
-  // El resto — mini acordeón
   const extra=posts.slice(5);
-
   const mainHTML=main.map(post=>{
     const img=extractImg(post.content||'');
     const txt=extractText(post.content||'').substring(0,150);
@@ -1628,8 +1544,6 @@ function renderGrid(posts){
       </div>
     </div>`;
   }).join('');
-
-  // Mini-cards para el resto
   let extraHTML='';
   if(extra.length>0){
     const miniCards=extra.map(post=>{
@@ -1645,7 +1559,6 @@ function renderGrid(posts){
         </div>
       </div>`;
     }).join('');
-
     extraHTML=`<div class="news-extra-wrap">
       <button class="btn-ver-mas" id="btnVerMas" onclick="toggleExtraNoticias()">
         <i class="fas fa-chevron-down"></i>
@@ -1656,9 +1569,7 @@ function renderGrid(posts){
       </div>
     </div>`;
   }
-
   container.innerHTML=`<div class="news-grid" style="grid-column:1/-1">${mainHTML}</div>${extraHTML}`;
-  // Resetear el grid container para que no sea grid en sí (el interno ya lo es)
   container.style.display='block';
 }
 
@@ -1686,8 +1597,6 @@ async function loadPosts(){
 /* ══════════════════════════════════════════════════════
    EDITOR VISUAL COMPLETO
 ══════════════════════════════════════════════════════ */
-
-/* ─── Posición imagen hero (sliders) ─── */
 function veHeroPos(){
   const x=document.getElementById('veHeroPosX').value;
   const y=document.getElementById('veHeroPosY').value;
@@ -1701,7 +1610,6 @@ function veApplyHeroHeight(){
 }
 function veOpen(){
   document.getElementById('veBar').classList.add('show');
-  // Empujar el body para que no quede tapado por la barra
   document.querySelector('header').style.top='52px';
   showToast('Editor Visual activado — haz clic en "Editar Elementos" para tocar la web','info');
 }
@@ -1711,13 +1619,9 @@ function veClose(){
   veDeactivateEditMode();
   veCloseProps();
 }
-
-/* ─── Aplicar color a variable CSS ─── */
 function veApplyColor(varName,value){
   document.documentElement.style.setProperty('--'+varName,value);
-  // Sincronizar rojo-dark cuando cambia rojo
   if(varName==='rojo'){
-    // Oscurecer el color un 20%
     const dark=shadeColor(value,-20);
     document.documentElement.style.setProperty('--rojo-dark',dark);
   }
@@ -1728,13 +1632,9 @@ function shadeColor(hex,percent){
   const R=(num>>16)+amt,G=(num>>8&0x00FF)+amt,B=(num&0x0000FF)+amt;
   return'#'+(0x1000000+(Math.max(0,Math.min(255,R))*0x10000)+(Math.max(0,Math.min(255,G))*0x100)+Math.max(0,Math.min(255,B))).toString(16).slice(1);
 }
-
-/* ─── Aplicar fuente global ─── */
 function veApplyFont(fontStack){
   document.body.style.fontFamily=fontStack;
 }
-
-/* ─── Cambiar imagen del hero ─── */
 function veChangeHeroImg(){
   document.getElementById('veImgBackdrop').classList.add('show');
   document.getElementById('veImgPanel').classList.add('show');
@@ -1784,8 +1684,6 @@ function veHandleHeroFile(input){
     showToast('Imagen comprimida y aplicada','success');
   });
 }
-
-/* ─── Modo editar elementos ─── */
 function veToggleEditMode(){
   veEditModeActive=!veEditModeActive;
   const btn=document.getElementById('btnVeEditMode');
@@ -1811,30 +1709,22 @@ function veDeactivateEditMode(){
   const btn=document.getElementById('btnVeEditMode');
   if(btn){btn.style.background='';btn.style.color='';btn.innerHTML='<i class="fas fa-mouse-pointer"></i> Editar Elementos';}
 }
-
 function attachVeListeners(){
   document.querySelectorAll('[data-ve]').forEach(el=>{
     el.removeEventListener('click',veElClick);
     el.addEventListener('click',veElClick);
   });
 }
-
 function veElClick(e){
   if(!veEditModeActive)return;
   e.preventDefault();e.stopPropagation();
-  // Quitar selección anterior
   document.querySelectorAll('[data-ve].ve-selected').forEach(el=>el.classList.remove('ve-selected'));
   this.classList.add('ve-selected');
   veSelectedEl=this;
   veShowProps(this,e.clientX,e.clientY);
 }
-
 function veShowProps(el,x,y){
-  const panel=document.getElementById('vePropsPanel');
-  // Rellenar toolbar con valores actuales del elemento
   const cs=window.getComputedStyle(el);
-
-  // Texto editable
   const isSimple=el.children.length===0||['SPAN','A','EM','STRONG'].includes(el.tagName);
   const textRow=document.getElementById('veTbTextRow');
   const textInput=document.getElementById('veTbTextInput');
@@ -1844,42 +1734,28 @@ function veShowProps(el,x,y){
   }else{
     textRow.style.display='none';
   }
-
-  // Color texto
   const col=rgbToHex(cs.color);
   if(col)document.getElementById('veTbColor').value=col;
-
-  // Tamaño fuente
   document.getElementById('veTbSize').value=parseInt(cs.fontSize)||'';
-
-  // Negrita / Italic
   document.getElementById('veTbBold').classList.toggle('active',parseInt(cs.fontWeight)>=700);
   document.getElementById('veTbItalic').classList.toggle('active',cs.fontStyle==='italic');
-
-  // Fondo
   const bg=cs.backgroundColor;
   if(bg&&bg!=='rgba(0, 0, 0, 0)')document.getElementById('veTbBg').value=rgbToHex(bg)||'#101f38';
-
-  // Guardar estilo original
   if(!veOrigStyles.has(el))veOrigStyles.set(el,el.getAttribute('style')||'');
-
-  // Posicionar toolbar SOBRE el elemento (no encima del cursor)
   const toolbar=document.getElementById('veToolbar');
-  toolbar.style.display='flex'; // necesario para medir
+  toolbar.style.display='flex';
   const rect=el.getBoundingClientRect();
   const tw=toolbar.offsetWidth||300;
   const th=toolbar.offsetHeight||44;
   let tx=rect.left;
-  let ty=rect.top-th-10; // 10px sobre el elemento
+  let ty=rect.top-th-10;
   if(tx+tw>window.innerWidth-8)tx=window.innerWidth-tw-8;
   if(tx<8)tx=8;
-  if(ty<60)ty=rect.bottom+10; // si no cabe arriba, va abajo
+  if(ty<60)ty=rect.bottom+10;
   toolbar.style.left=tx+'px';
   toolbar.style.top=ty+'px';
   toolbar.classList.add('show');
 }
-
-/* ─── Toolbar: live preview ─── */
 function veTbLiveColor(v){if(veSelectedEl)veSelectedEl.style.color=v;}
 function veTbLiveBg(v){if(veSelectedEl)veSelectedEl.style.backgroundColor=v;}
 function veTbToggleBold(){
@@ -1896,20 +1772,16 @@ function veTbToggleItalic(){
   veSelectedEl.style.fontStyle=isItalic?'normal':'italic';
   document.getElementById('veTbItalic').classList.toggle('active',!isItalic);
 }
-
-/* ─── Toolbar: aplicar y cerrar ─── */
 function veTbApply(){
   if(!veSelectedEl)return;
   const el=veSelectedEl;
   const textRow=document.getElementById('veTbTextRow');
-  // Texto
   if(textRow.style.display!=='none'){
     const txt=document.getElementById('veTbTextInput').value;
     if(txt&&(el.children.length===0||['SPAN','A','EM','STRONG'].includes(el.tagName))){
       el.textContent=txt;
     }
   }
-  // Tamaño
   const sz=document.getElementById('veTbSize').value;
   if(sz)el.style.fontSize=sz+'px';
   showToast('Cambios aplicados ✓','success');
@@ -1927,24 +1799,15 @@ function veCloseToolbar(){
   if(veSelectedEl)veSelectedEl.classList.remove('ve-selected');
   veSelectedEl=null;
 }
-/* Alias para compatibilidad con código anterior */
 function veCloseProps(){veCloseToolbar();}
 function veApplyProps(){veTbApply();}
 function veResetEl(){veTbReset();}
-
-/* ─── Utilidad: rgb(a,b,c) → #rrggbb ─── */
 function rgbToHex(rgb){
   if(!rgb||rgb==='transparent')return'';
   const m=rgb.match(/\d+/g);
   if(!m||m.length<3)return'';
   return'#'+m.slice(0,3).map(n=>(+n).toString(16).padStart(2,'0')).join('');
 }
-
-/* ────────────────────────────────────────────
-   EXPORTAR HTML — Descarga el HTML actual
-   con TODOS los cambios del editor visual
-   preservando funciones intactas.
-──────────────────────────────────────────── */
 function veExportHTML(){
   const cs=document.documentElement.style;
   const rojo     =cs.getPropertyValue('--rojo').trim()    ||'#e8001c';
@@ -1952,24 +1815,13 @@ function veExportHTML(){
   const negro    =cs.getPropertyValue('--negro').trim()   ||'#07101d';
   const azulCard =cs.getPropertyValue('--azul-card').trim()||'#101f38';
   const texto    =cs.getPropertyValue('--texto').trim()   ||'#e8edf5';
-
   const clone=document.documentElement.cloneNode(true);
-
-  // 1. Eliminar elementos de editor (no van en la web pública)
   const removeIds=['veBar','veToolbar','vePropsPanel','veImgBackdrop','veImgPanel','inlineImgBackdrop','inlineImgPanel'];
   removeIds.forEach(id=>{const el=clone.querySelector('#'+id);if(el)el.remove();});
-
-  // 2. Limpiar clases de editor del body
   clone.querySelector('body').classList.remove('ve-mode');
-
-  // 3. Restaurar header
   const hdr=clone.querySelector('header');
   if(hdr)hdr.style.top='';
-
-  // 4. Quitar clases ve-selected
   clone.querySelectorAll('.ve-selected').forEach(el=>el.classList.remove('ve-selected'));
-
-  // 5. Inyectar colores en :root
   const styles=clone.querySelectorAll('style');
   styles.forEach(style=>{
     if(style.textContent.includes('--rojo:')){
@@ -1981,35 +1833,24 @@ function veExportHTML(){
         .replace(/--texto\s*:[^;]+;/,`--texto:${texto};`);
     }
   });
-
-  // 6. Fuente global
   const bodyFont=document.body.style.fontFamily;
   if(bodyFont)clone.querySelector('body').style.fontFamily=bodyFont;
-
-  // 7. Imagen hero
   const heroSrc=document.getElementById('heroBgImg').src;
   const cloneHeroImg=clone.querySelector('#heroBgImg');
   if(cloneHeroImg)cloneHeroImg.src=heroSrc;
-
-  // 8. Estilos inline de elementos editados
   document.querySelectorAll('[data-ve]').forEach(el=>{
     const veId=el.getAttribute('data-ve');
     const style=el.getAttribute('style');
     const cloneEl=clone.querySelector(`[data-ve="${veId}"]`);
     if(cloneEl){
       if(style)cloneEl.setAttribute('style',style);
-      // Preservar texto editado
       if(el.children.length===0||['SPAN','A','EM','STRONG'].includes(el.tagName)){
         cloneEl.textContent=el.textContent;
       }
     }
   });
-
-  // 9. Quitar botón "Editar Web"
   const editWebBtn=clone.querySelector('.btn-new-post[onclick="veOpen()"]');
   if(editWebBtn)editWebBtn.remove();
-
-  // 10. Descargar
   const htmlStr='<!doctype html>\n'+clone.outerHTML;
   const blob=new Blob([htmlStr],{type:'text/html;charset=utf-8'});
   const a=document.createElement('a');
@@ -2020,7 +1861,6 @@ function veExportHTML(){
   showToast('¡HTML exportado! Pégalo en tu Blogger','success');
 }
 
-/* Cerrar toolbar si clic fuera */
 document.addEventListener('click',e=>{
   if(!veEditModeActive)return;
   const toolbar=document.getElementById('veToolbar');
@@ -2029,7 +1869,6 @@ document.addEventListener('click',e=>{
   }
 });
 
-/* ─── Acordeón "Ver más noticias" ─── */
 function toggleExtraNoticias(){
   const list=document.getElementById('extraNoticiasList');
   const btn=document.getElementById('btnVerMas');
@@ -2051,5 +1890,5 @@ function toggleExtraNoticias(){
 
 loadPosts();
 </script>
-</body>
-</html>
+
+</!doctype>
